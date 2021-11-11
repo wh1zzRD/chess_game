@@ -1,5 +1,6 @@
 import pygame
 import time
+import random
 
 pygame.init()
 width, height = 800, 800
@@ -44,78 +45,104 @@ class Figure:
             self.image = pygame.transform.rotozoom(self.picture_black, 0, 0.4)
 
     def move(self, mouse_x, mouse_y):
+    
         mouse_coordinates = [mouse_x, mouse_y]
-        possible_moves = self.calculate_moves()
-        for i in possible_moves:
-            if mouse_coordinates == i:
-                for figure in figures:
-                    if [figure.x, figure.y] == i and figure.color != self.color:
-                        figures.remove(figure)
-                        break
-                prev_x = self.x
-                prev_y = self.y
-                self.x = i[0]
-                self.y = i[1]
-                if self.avoid_checkmate():
-                    self.x = prev_x
-                    self.y = prev_y
-                    return False
-                return True
-        return False
 
-    def avoid_checkmate(self):
+        if mouse_coordinates in self.remove_if_check():
+            deleting = False
+
+            for figure in figures:
+                if [figure.x, figure.y] == mouse_coordinates and figure.color != self.color:
+                    figure_to_delete = figure
+                    deleting = True
+                    break
+            if deleting:
+                figures.remove(figure_to_delete)
+            self.x, self.y = mouse_coordinates
+            if isinstance(self, Pawn) and ((self.y == 0 and self.color == 1) or (self.y == 7 and self.color == 0)):
+                self.pawn_to_queen()
+            return True
+        else:
+            return False
+
+    def display_possible_moves(self):
+        for move in self.remove_if_check():
+            pygame.draw.rect(display, (80, 80, 80), (move[0] * 100 + 10, move[1] * 100 + 10, 80, 80))
+
+        for figure in figures:
+            figure.draw(display)
+
+    def remove_if_check(self):
+        prev_x = self.x
+        prev_y = self.y
+        possible_moves = self.calculate_moves()
+        check_found = False
+        moves_to_remove = []
+
         king_pos = None
         for figure in figures:
-            if isinstance(figure, King) and figure.color == turn:
+            if isinstance(figure, King) and figure.color == self.color:
                 king_pos = [figure.x, figure.y]
                 break
 
-        for figure in figures:
-            if figure.color != turn:
-                for i in figure.calculate_moves():
-                    if i == king_pos:
-                        print("you have to avoid checkmate")
-                        return True
+        for move in possible_moves:
+            self.x = move[0]
+            self.y = move[1]
+            beaten_figure = None
+
+            for figure in figures:
+                if [figure.x, figure.y] == move and figure.color != self.color:
+                    beaten_figure = figure
+            
+            for figure in figures:
+                if check_found:
+                    check_found = False
+                    break
+
+                if isinstance(self, King):
+                    if figure.color != self.color and figure != beaten_figure:
+                        if [self.x, self.y] in figure.calculate_moves():
+                            moves_to_remove.append(move)
+                else:
+                    if figure.color != self.color and figure != beaten_figure:
+                        if king_pos in figure.calculate_moves():
+                            moves_to_remove.append(move)
+                            check = True
+                            break
+
+            self.x = prev_x
+            self.y = prev_y
+            beaten_figure = None
+
+        if moves_to_remove:
+            for move_to_remove in moves_to_remove:
+                try:
+                    possible_moves.remove(move_to_remove)
+                except:
+                    continue
+
+        return possible_moves
 
     def check(self):
         king_pos = None
         for figure in figures:
-            if isinstance(figure, King) and figure.color != turn:
+            if isinstance(figure, King) and figure.color != self.color:
                 king_pos = [figure.x, figure.y]
                 break
 
         for figure in figures:
-            if figure.color == turn:
-                for i in figure.calculate_moves():
-                    if i == king_pos:
-                        return True
+            if figure.color == self.color:
+                # for i in figure.calculate_moves():
+                #     if i == king_pos:
+                #         return True
+                if king_pos in figure.calculate_moves():
+                    return True
 
     def mate(self):
-        # king_position = None
-        there_is_possible_move = False
-        # for figure in figures:
-        #     if isinstance(figure, King) and figure.color != turn:
-        #         king_position = [figure.x, figure.y]
-        #         break
-
         for figure in figures:
-            if there_is_possible_move:
-                return False
-
-            if figure.color != turn:
-                prev_x = figure.x
-                prev_y = figure.y
-                for i in figure.calculate_moves():
-                    figure.x = i[0]
-                    figure.y = i[1]
-                    if figure.check():
-                        figure.x = prev_x
-                        figure.y = prev_y
-                    else:
-                        there_is_possible_move = True
-                        figure.x = prev_x
-                        figure.y = prev_y
-                        break
+            if figure.color != self.color:
+                if figure.remove_if_check():
+                    return False
 
         return True
 
@@ -144,13 +171,17 @@ class Pawn(Figure):
                 possible_moves.append([figure.x, figure.y])
 
         if ((self.y == 6 and self.color == 1) or (self.y == 1 and self.color == 0)) and (
-                not figure_two_in_front or not figure_in_front):
+                not figure_two_in_front and not figure_in_front):
             possible_moves.append([self.x, self.y - 2 * self.factor])
 
         if not figure_in_front:
             possible_moves.append([self.x, self.y - 1 * self.factor])
 
         return possible_moves
+
+    def pawn_to_queen(self):
+        figures.add(Queen(self.x, self.y, self.color))
+        figures.remove(self)
 
 
 class King(Figure):
@@ -164,8 +195,12 @@ class King(Figure):
 
         for figure in figures:
             for i in possible_moves:
-                if figure.color == self.color and [figure.x, figure.y] == i:
+                if [figure.x, figure.y] == i and figure.color == self.color:
                     possible_moves.remove(i)
+
+        for move in possible_moves:
+            if move[0] > 7 or move[1] > 7 or move[0] < 0 or move[1] < 0:
+                possible_moves.remove(move)
 
         return possible_moves
 
@@ -233,6 +268,10 @@ class Rook(Figure):
                 figure_found = False
                 break
             possible_moves.append([x, self.y])
+
+        for move in possible_moves:
+            if move[0] > 7 or move[1] > 7 or move[0] < 0 or move[1] < 0:
+                possible_moves.remove(move)
 
         return possible_moves
 
@@ -321,6 +360,11 @@ class Bishop(Figure):
                 break
             possible_moves.append([self.x - i, self.y - i])
 
+        
+        for move in possible_moves:
+            if move[0] > 7 or move[1] > 7 or move[0] < 0 or move[1] < 0:
+                possible_moves.remove(move)
+
 
         return possible_moves
 
@@ -338,6 +382,10 @@ class Knight(Figure):
             for i in possible_moves:
                 if figure.color == self.color and [figure.x, figure.y] == i:
                     possible_moves.remove(i)
+
+        for move in possible_moves:
+            if move[0] > 7 or move[1] > 7 or move[0] < 0 or move[1] < 0:
+                possible_moves.remove(move)
 
         return possible_moves
 
@@ -475,6 +523,10 @@ class Queen(Figure):
                 break
             possible_moves.append([self.x - i, self.y - i])
 
+        for move in possible_moves:
+            if move[0] > 7 or move[1] > 7 or move[0] < 0 or move[1] < 0:
+                possible_moves.remove(move)
+
         return possible_moves
 
 # global variables will be here
@@ -482,10 +534,12 @@ class Queen(Figure):
 figures = {Rook(0, 0, 0), Knight(1, 0, 0), Bishop(2, 0, 0), Queen(3, 0, 0), King(4, 0, 0), Bishop(5, 0, 0), Knight(6, 0, 0), Rook(7, 0, 0),
            Pawn(0, 1, 0), Pawn(1, 1, 0), Pawn(2, 1, 0), Pawn(3, 1, 0), Pawn(4, 1, 0), Pawn(5, 1, 0), Pawn(6, 1, 0), Pawn(7, 1, 0),
            Pawn(0, 6, 1), Pawn(1, 6, 1), Pawn(2, 6, 1), Pawn(3, 6, 1), Pawn(4, 6, 1), Pawn(5, 6, 1), Pawn(6, 6, 1), Pawn(7, 6, 1),
-           Rook(0, 7, 1), Knight(1, 7, 1), Bishop(2, 7, 1), Queen(3, 7, 1), King(4, 7, 1), Bishop(5, 7, 1), Knight(6, 7, 1), Rook(7, 7, 1)}
+           Rook(0, 7, 1), Knight(1, 7, 1), Bishop(2, 7, 1), Queen(4, 7, 1), King(3, 7, 1), Bishop(5, 7, 1), Knight(6, 7, 1), Rook(7, 7, 1)}
 
 selected_figure = None
 turn = 1
+
+opponent_move = False
 
 check = False
 mate = False
@@ -505,7 +559,7 @@ while keep_doing:
     y_field_position = 0
 
     for i in range(32):
-        color = (0, 0, 0)
+        color = (97, 53, 7)
         pygame.draw.rect(display, color, pygame.Rect(x_field_position, y_field_position, 100, 100))
 
         x_field_position += 200
@@ -520,19 +574,24 @@ while keep_doing:
     for figure in figures:
         figure.draw(display)
 
-    if result == "checkmate":
+    if selected_figure:
+        selected_figure.display_possible_moves()
+
+    if mate:
+        result = "checkmate"
         check_image = font.render("Result: " + str(result), True, (120, 218, 127))
         display.blit(check_image, (300, 400))
         pygame.display.update()
         time.sleep(3)
-        quit()
-
+        pygame.quit()
+    
     if event.type == pygame.MOUSEBUTTONDOWN:
 
         if event.button == 1:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             mouse_x //= 100
             mouse_y //= 100
+
             if selected_figure:
                 if mouse_x == selected_figure.x and mouse_y == selected_figure.y:
                     selected_figure.deselect()
@@ -542,19 +601,20 @@ while keep_doing:
                 if selected_figure.move(mouse_x, mouse_y):
                     if selected_figure.check():
                         print("check")
-                    if selected_figure.mate():
-                        result = "checkmate"
-                        print(result)
+                        if selected_figure.mate():
+                            mate = True
+                            print("mate")
                     turn = not selected_figure.color
                     selected_figure.deselect()
                     selected_figure = None
+                    opponent_move = True
                     continue
+                
             for figure in figures:
                 if mouse_x == figure.x and mouse_y == figure.y and not selected_figure:
                     if figure.color == turn:
                         figure.set_as_selected()
                         selected_figure = figure
-
                         event.type != pygame.MOUSEBUTTONDOWN
                         event.button = 0
                         break
