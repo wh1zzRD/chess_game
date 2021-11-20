@@ -192,6 +192,7 @@ class King(Figure):
         possible_moves = [[self.x, self.y + 1], [self.x, self.y - 1], [self.x + 1, self.y], [self.x - 1, self.y],
                           [self.x + 1, self.y - 1], [self.x + 1, self.y + 1], [self.x - 1, self.y + 1],
                           [self.x - 1, self.y - 1]]
+        possible_moves_end = []
 
         for figure in figures:
             for i in possible_moves:
@@ -199,10 +200,12 @@ class King(Figure):
                     possible_moves.remove(i)
 
         for move in possible_moves:
-            if move[0] > 7 or move[1] > 7 or move[0] < 0 or move[1] < 0:
-                possible_moves.remove(move)
+            if move[0] < 0 or move[0] > 7 or move[1] < 0 or move[1] > 7:
+                continue
+            else:
+                possible_moves_end.append(move)
 
-        return possible_moves
+        return possible_moves_end
 
 
 class Rook(Figure):
@@ -211,6 +214,7 @@ class Rook(Figure):
 
     def calculate_moves(self):
         possible_moves = []
+        possible_moves_end = []
         figure_found = False
 
         for y in range(self.y - 1, -1, -1):
@@ -270,10 +274,12 @@ class Rook(Figure):
             possible_moves.append([x, self.y])
 
         for move in possible_moves:
-            if move[0] > 7 or move[1] > 7 or move[0] < 0 or move[1] < 0:
-                possible_moves.remove(move)
+            if move[0] < 0 or move[0] > 7 or move[1] < 0 or move[1] > 7:
+                continue
+            else:
+                possible_moves_end.append(move)
 
-        return possible_moves
+        return possible_moves_end
 
 
 class Bishop(Figure):
@@ -282,6 +288,7 @@ class Bishop(Figure):
 
     def calculate_moves(self):
         possible_moves = []
+        possible_moves_end = []
         figure_found = False
 
         for i in range(1, 8):
@@ -362,11 +369,13 @@ class Bishop(Figure):
 
         
         for move in possible_moves:
-            if move[0] > 7 or move[1] > 7 or move[0] < 0 or move[1] < 0:
-                possible_moves.remove(move)
+            if move[0] < 0 or move[0] > 7 or move[1] < 0 or move[1] > 7:
+                continue
+            else:
+                possible_moves_end.append(move)
 
 
-        return possible_moves
+        return possible_moves_end
 
 
 class Knight(Figure):
@@ -377,6 +386,7 @@ class Knight(Figure):
         possible_moves = [[self.x - 1, self.y - 2], [self.x + 1, self.y + 2], [self.x - 2, self.y - 1],
                           [self.x - 2, self.y + 1], [self.x - 1, self.y + 2], [self.x + 1, self.y - 2],
                           [self.x + 2, self.y - 1], [self.x + 2, self.y + 1]]
+        possible_moves_end = []
 
         for figure in figures:
             for i in possible_moves:
@@ -384,10 +394,12 @@ class Knight(Figure):
                     possible_moves.remove(i)
 
         for move in possible_moves:
-            if move[0] > 7 or move[1] > 7 or move[0] < 0 or move[1] < 0:
-                possible_moves.remove(move)
+            if move[0] < 0 or move[0] > 7 or move[1] < 0 or move[1] > 7:
+                continue
+            else:
+                possible_moves_end.append(move)
 
-        return possible_moves
+        return possible_moves_end
 
 
 class Queen(Figure):
@@ -396,6 +408,7 @@ class Queen(Figure):
 
     def calculate_moves(self):
         possible_moves = []
+        possible_moves_end = []
         figure_found = False
 
         for y in range(self.y - 1, -1, -1):
@@ -524,17 +537,21 @@ class Queen(Figure):
             possible_moves.append([self.x - i, self.y - i])
 
         for move in possible_moves:
-            if move[0] > 7 or move[1] > 7 or move[0] < 0 or move[1] < 0:
-                possible_moves.remove(move)
+            if move[0] < 0 or move[0] > 7 or move[1] < 0 or move[1] > 7:
+                continue
+            else:
+                possible_moves_end.append(move)
 
-        return possible_moves
+        return possible_moves_end
 
 # global variables will be here
 
-figures = {Rook(0, 0, 0), Knight(1, 0, 0), Bishop(2, 0, 0), Queen(3, 0, 0), King(4, 0, 0), Bishop(5, 0, 0), Knight(6, 0, 0), Rook(7, 0, 0),
-           Pawn(0, 1, 0), Pawn(1, 1, 0), Pawn(2, 1, 0), Pawn(3, 1, 0), Pawn(4, 1, 0), Pawn(5, 1, 0), Pawn(6, 1, 0), Pawn(7, 1, 0),
-           Pawn(0, 6, 1), Pawn(1, 6, 1), Pawn(2, 6, 1), Pawn(3, 6, 1), Pawn(4, 6, 1), Pawn(5, 6, 1), Pawn(6, 6, 1), Pawn(7, 6, 1),
-           Rook(0, 7, 1), Knight(1, 7, 1), Bishop(2, 7, 1), Queen(4, 7, 1), King(3, 7, 1), Bishop(5, 7, 1), Knight(6, 7, 1), Rook(7, 7, 1)}
+# figures = {Rook(0, 0, 0), Knight(1, 0, 0), Bishop(2, 0, 0), Queen(3, 0, 0), King(4, 0, 0), Bishop(5, 0, 0), Knight(6, 0, 0), Rook(7, 0, 0),
+#            Pawn(0, 1, 0), Pawn(1, 1, 0), Pawn(2, 1, 0), Pawn(3, 1, 0), Pawn(4, 1, 0), Pawn(5, 1, 0), Pawn(6, 1, 0), Pawn(7, 1, 0),
+#            Pawn(0, 6, 1), Pawn(1, 6, 1), Pawn(2, 6, 1), Pawn(3, 6, 1), Pawn(4, 6, 1), Pawn(5, 6, 1), Pawn(6, 6, 1), Pawn(7, 6, 1),
+#            Rook(0, 7, 1), Knight(1, 7, 1), Bishop(2, 7, 1), Queen(4, 7, 1), King(3, 7, 1), Bishop(5, 7, 1), Knight(6, 7, 1), Rook(7, 7, 1)}
+
+figures = {King(7, 7, 0), King(3, 2, 1), Bishop(2, 2, 0), Queen(0, 4, 0)}
 
 selected_figure = None
 turn = 1
