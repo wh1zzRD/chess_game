@@ -88,52 +88,74 @@ class Figure:
         prev_y = self.y
         possible_moves = self.calculate_moves()
         check_found = False
-        moves_to_remove = []
+        valid_moves = []
 
         king_pos = None
         for figure in figures:
             if isinstance(figure, King) and figure.color == self.color:
                 king_pos = [figure.x, figure.y]
-                break
 
-        for move in possible_moves:
-            self.x = move[0]
-            self.y = move[1]
-            beaten_figure = None
+        if not isinstance(self, King):
+            for move in possible_moves:
+                self.x, self.y = move
+                beaten_figure = None
 
-            for figure in figures:
-                if [figure.x, figure.y] == move and figure.color != self.color:
-                    beaten_figure = figure
+                for figure in figures:
+                    if [figure.x, figure.y] == move and figure.color != self.color:
+                        beaten_figure = figure
 
-            for figure in figures:
-                if check_found:
-                    check_found = False
-                    break
+                for figure in figures:
+                    if check_found:  # Move is invalid of eve one of opponent's figures will beat your king after
+                        break
 
-                if isinstance(self, King):
-                    if figure.color != self.color and figure != beaten_figure:
-                        if [self.x, self.y] in figure.calculate_moves():
-                            moves_to_remove.append(move)
-                else:
                     if figure.color != self.color and figure != beaten_figure:
                         if king_pos in figure.calculate_moves():
-                            moves_to_remove.append(move)
-                            check = True
+                            # moves_to_remove.append(move)
+                            check_found = True
                             break
 
-            self.x = prev_x
-            self.y = prev_y
-            beaten_figure = None
+                self.x = prev_x
+                self.y = prev_y
+                beaten_figure = None
 
-        if moves_to_remove:
-            for move_to_remove in moves_to_remove:
-                try:
-                    possible_moves.remove(move_to_remove)
-                except:
+                if check_found:
+                    check_found = False
                     continue
 
-        return possible_moves
-        #return possible_moves
+                valid_moves.append(move)
+        else:
+            """
+            If the figure we are moving is the king, we have to consider its position after a move and not before, 
+            when checking for check
+            """
+            for move in possible_moves:
+                self.x, self.y = move
+                beaten_figure = None
+
+                for figure in figures:
+                    if [figure.x, figure.y] == move and figure.color != self.color:
+                        beaten_figure = figure
+
+                for figure in figures:
+                    if check_found:
+                        break
+
+                    if figure.color != self.color and figure != beaten_figure:
+                        if move in figure.calculate_moves():
+                            check_found = True
+                            break
+
+                self.x = prev_x
+                self.y = prev_y
+                beaten_figure = None
+
+                if check_found:
+                    check_found = False
+                    continue
+
+                valid_moves.append(move)
+
+        return valid_moves
 
     def check(self):
         king_pos = None
@@ -615,6 +637,11 @@ figures = {Rook(0, 0, 0), Knight(1, 0, 0), Bishop(2, 0, 0), Queen(3, 0, 0), King
            Pawn(7, 6, 1),
            Rook(0, 7, 1), Knight(1, 7, 1), Bishop(2, 7, 1), Queen(4, 7, 1), King(3, 7, 1), Bishop(5, 7, 1),
            Knight(6, 7, 1), Rook(7, 7, 1)}
+
+# figures = {Rook(0, 0, 0), Knight(1, 0, 0), Bishop(2, 0, 0), Queen(3, 0, 0), King(4, 0, 0), Bishop(5, 0, 0),
+#            Knight(6, 0, 0), Rook(7, 0, 0),
+#            Rook(0, 7, 1), Knight(1, 7, 1), Bishop(2, 7, 1), Queen(4, 7, 1), King(3, 7, 1), Bishop(5, 7, 1),
+#            Knight(6, 7, 1), Rook(7, 7, 1)}
 
 
 selected_figure = False
