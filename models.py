@@ -10,6 +10,7 @@ class Game:
         width, height = 870, 870
         self.FPS = 40
         self.display = pygame.display.set_mode((width, height))
+        pygame.display.set_caption('Chess')
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont('Comic Sans MS', 30)
 
@@ -24,9 +25,9 @@ class Game:
         self.figures = self.fen_converter()
 
     def fen_converter(self):
-        # fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
+        fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
         # fen = "8/2q4N/4k3/2b5/2P5/1P3N1r/8/1R6"
-        fen = "8/2P5/8/k7/6q1/2Q5/5K2/8"
+        # fen = "8/2P5/8/k7/6q1/2Q5/5K2/8"
 
         rows = fen.split("/")
         figures = set()
@@ -38,6 +39,10 @@ class Game:
                     figures.add(Pawn(self, x, y, 0))
                 elif symbol == "P":
                     figures.add(Pawn(self, x, y, 1))
+                elif symbol == "r":
+                    figures.add(Rook(self, x, y, 0))
+                elif symbol == "R":
+                    figures.add(Rook(self, x, y, 1))
                 elif symbol == "n":
                     figures.add(Knight(self, x, y, 0))
                 elif symbol == "N":
