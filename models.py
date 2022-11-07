@@ -10,18 +10,20 @@ class Game:
         width, height = 870, 870
         self.FPS = 40
         self.display = pygame.display.set_mode((width, height))
-        pygame.display.set_caption('Chess')
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont('Comic Sans MS', 30)
 
         self.pawn_switched_to_queen = False
 
+        self.selected_figure: Optional[Figure] = None
+        self.selected_figure_moves = []
         self.keep_doing = True
+
         self.check = False
         self.mate = False
+        self.stalemate = False
         self.result = None
         self.turn = 1
-        self.opponent_move = False
         self.figures = self.fen_converter()
 
     def fen_converter(self):
@@ -70,7 +72,51 @@ class Game:
 
         return figures
 
+    def into_fen_converter(self):
+        fen = ""
+        current_symbol = ""
+        counter = 0
+
+        for y in range(8):
+            for x in range(8):
+                figure_found = False
+                for figure in self.figures:
+                    if [figure.x, figure.y] == [x, y]:
+                        figure_found = True
+                        if isinstance(figure, Pawn):
+                            current_symbol = "p"
+                        elif isinstance(figure, Queen):
+                            current_symbol = "q"
+                        elif isinstance(figure, Bishop):
+                            current_symbol = "b"
+                        elif isinstance(figure, King):
+                            current_symbol = "k"
+                        elif isinstance(figure, Knight):
+                            current_symbol = "n"
+                        elif isinstance(figure, Rook):
+                            current_symbol = "r"
+
+                        if figure.color == 1:
+                            current_symbol = current_symbol.upper()
+
+                        if counter:
+                            fen += str(counter)
+                            counter = 0
+
+                        fen += current_symbol
+
+                if not figure_found:
+                    counter += 1
+
+            if counter:
+                fen += str(counter)
+                counter = 0
+            fen += "/"
+
+        return fen[:-1]
+
     def display_field(self):
+        self.display.fill((97, 53, 7))
         x_field_position = 35
         y_field_position = 35
 
@@ -110,17 +156,114 @@ class Game:
             self.display.blit(num, (x_pos, -5))
             x_pos += 100
 
-    def check_mate(self):
-        if self.mate:
-            self.result = "checkmate"
-            check_image = self.font.render("Result: " + str(self.result), True, (120, 218, 127))
-            self.display.blit(check_image, (300, 400))
+    def display_figures(self):
+        for figure in self.figures:
+            figure.draw()
+
+    def display_result(self):
+        if self.mate or self.stalemate:
+            result_image = self.font.render("Result: " + str(self.result), True, (120, 218, 127))
+            self.display.blit(result_image, (300, 400))
             pygame.display.update()
             time.sleep(3)
-            pygame.quit()
+            self.keep_doing = False
 
+    def display_selected_figures_moves(self):
+        if self.selected_figure is not None:
+            self.selected_figure.display_possible_moves(self.selected_figure_moves)
+
+    def check_mate(self):
+        for figure in self.figures:
+            if figure.color != self.turn:
+                if figure.remove_if_check():
+                    self.mate = False
+                    return False
+
+        self.mate = True
+        return True
+
+    def check_check(self):
+        king_pos = None
+        for figure in self.figures:
+            if isinstance(figure, King) and figure.color != self.turn:
+                king_pos = [figure.x, figure.y]
+                break
+
+        for figure in self.figures:
+            if figure.color == self.turn:
+                if king_pos in figure.calculate_moves():
+                    self.check = True
+                    return True
+
+        self.check = False
+        return False
+
+    def handle_game_status(self):
+        if self.check_check() and self.check_mate():
+            self.result = "checkmate"
+        if not self.check_check() and self.check_mate():
+            self.mate = False
+            self.stalemate = True
+            self.result = "stalemate"
+
+    @staticmethod
+    def convert_mouse_coordinates_to_field_coordinates(mouse_coordinates):
+        mouse_x = (mouse_coordinates[0] - 35) // 100
+        mouse_y = (mouse_coordinates[1] - 35) // 100
+
+        return mouse_x, mouse_y
+
+    def process_exit_event(self, event):
+        if event.type == pygame.QUIT:
+            self.keep_doing = False
+
+    def process_figure_handling_event(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+
+            if event.button == 1:
+                mouse_x, mouse_y = self.convert_mouse_coordinates_to_field_coordinates(pygame.mouse.get_pos())
+
+                if self.selected_figure is not None:
+                    if self._handling_figure_deselection(mouse_x, mouse_y):
+                        return
+                    if self.selected_figure.move(mouse_x, mouse_y):
+                        self._handling_figure_post_move()
+                else:
+                    self._handling_figure_selection(mouse_x, mouse_y)
+
+    def _handling_figure_deselection(self, mouse_x, mouse_y):
+        if mouse_x == self.selected_figure.x and mouse_y == self.selected_figure.y:
+            self.selected_figure.deselect()
+            self.selected_figure = None
+            return True
+
+        return False
+
+    def _handling_figure_post_move(self):
+        if self.pawn_switched_to_queen:
+            for figure in self.figures:
+                if [figure.x, figure.y] == [self.selected_figure.x, self.selected_figure.y]:
+                    self.selected_figure = figure
+                    self.pawn_switched_to_queen = False
+                    break
+
+        self.handle_game_status()
+
+        self.turn = not self.selected_figure.color
+        self.selected_figure.deselect()
+        self.selected_figure = None
+
+    def _handling_figure_selection(self, mouse_x, mouse_y):
+        for figure in self.figures:
+            if mouse_x == figure.x and mouse_y == figure.y:
+                if figure.color == self.turn:
+                    figure.set_as_selected()
+                    self.selected_figure_moves = figure.remove_if_check()
+                    self.selected_figure = figure
+                    break
 
 # parent class for every figure
+
 
 class Figure:
 
@@ -153,7 +296,6 @@ class Figure:
     def draw(self):
         self.game.display.blit(self.image, (self.x * 100 + 35, self.y * 100 + 35))
 
-    # Making the figure bigger if it's selected
     def set_as_selected(self):
         if self.is_selected:
             return
@@ -281,26 +423,6 @@ class Figure:
 
         return valid_moves
 
-    def check(self):
-        king_pos = None
-        for figure in self.game.figures:
-            if isinstance(figure, King) and figure.color != self.color:
-                king_pos = [figure.x, figure.y]
-                break
-
-        for figure in self.game.figures:
-            if figure.color == self.color:
-                if king_pos in figure.calculate_moves():
-                    return True
-
-    def mate(self):
-        for figure in self.game.figures:
-            if figure.color != self.color:
-                if figure.remove_if_check():
-                    return False
-
-        return True
-
 
 # class for each figure
 
@@ -339,10 +461,8 @@ class Pawn(Figure):
         return f"Pawn_Object_at_{self.x}/{self.y}"
 
     def pawn_to_queen(self):
-        # queen = Queen(self, self.x, self.y, self.color)
         self.game.figures.add(Queen(self.game, self.x, self.y, self.color))
         self.game.figures.remove(self)
-        # self.game.figures.add(queen)
 
 
 class King(Figure):
