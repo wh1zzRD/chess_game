@@ -5,12 +5,7 @@ import pygame
 
 from models.fen import FenConverter
 from models.figure import Figure
-from models.bishop import Bishop
 from models.king import King
-from models.knight import Knight
-from models.pawn import Pawn
-from models.queen import Queen
-from models.rook import Rook
 
 
 class Game:
@@ -35,17 +30,37 @@ class Game:
         self.result = None
         self.turn = 1
         # self.figures = FenConverter.fen_converter(self, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR")
-        self.figures = FenConverter.fen_converter(self, "2rr4/8/6k1/8/8/2Q5/2K5/8")
+        self.figures = FenConverter.fen_converter(self, "1rr5/8/8/7k/8/8/K7/8")
         # self.figures = FenConverter.fen_converter(self, "2r5/3r4/6k1/8/8/8/1K6/8")
         self.calculation_figures = self.figures.copy()
 
-    def display_field(self):
+    def run(self):
+        while self.keep_doing:
+            self.clock.tick(self.FPS)
+            self.draw()
+            self.process_events()
+
+        pygame.quit()
+
+    def draw(self):
+        self.draw_board()
+        self.draw_board_coordinates()
+        self.draw_figures()
+        self.draw_selected_figures_moves()
+        self.draw_result()
+        pygame.display.flip()
+
+    def process_events(self):
+        for event in pygame.event.get():
+            self.process_exit_event(event)
+            self.process_figure_handling_event(event)
+
+    def draw_board(self):
         self.display.fill((97, 53, 7))
         x_field_position = 35
         y_field_position = 35
 
         for i in range(32):
-            # color = (97, 53, 7)
             color = (218, 163, 120)
             pygame.draw.rect(self.display, color, pygame.Rect(x_field_position, y_field_position, 100, 100))
 
@@ -58,7 +73,7 @@ class Game:
                 x_field_position = 35
                 y_field_position += 100
 
-    def display_coordinates(self):
+    def draw_board_coordinates(self):
         y_pos = 65
         x_pos = 75
 
@@ -80,11 +95,11 @@ class Game:
             self.display.blit(num, (x_pos, -5))
             x_pos += 100
 
-    def display_figures(self):
+    def draw_figures(self):
         for figure in self.figures:
             figure.draw()
 
-    def display_result(self):
+    def draw_result(self):
         if self.mate or self.stalemate:
             result_image = self.font.render("Result: " + str(self.result), True, (120, 218, 127))
             self.display.blit(result_image, (300, 400))
@@ -92,9 +107,9 @@ class Game:
             time.sleep(3)
             self.keep_doing = False
 
-    def display_selected_figures_moves(self):
+    def draw_selected_figures_moves(self):
         if self.selected_figure is not None:
-            self.selected_figure.display_possible_moves(self.selected_figure_moves)
+            self.selected_figure.draw_possible_moves(self.selected_figure_moves)
 
     def check_mate(self):
         for figure in self.figures:

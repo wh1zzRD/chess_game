@@ -3,10 +3,6 @@ from typing import Optional
 import pygame
 
 
-# from models.king import King
-# from models.pawn import Pawn
-
-
 class Figure:
 
     @property
@@ -68,7 +64,8 @@ class Figure:
         else:
             return False
 
-    def display_possible_moves(self, moves):
+    def draw_possible_moves(self, moves):
+        # TODO move to game class
         # Displaying a circle on every field on the board that is a possible move for the figure
         for move in moves:
             pygame.draw.circle(self.game.display, (80, 80, 80), (move[0] * 100 + 85, move[1] * 100 + 85), 20)
