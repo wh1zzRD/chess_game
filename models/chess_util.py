@@ -76,5 +76,8 @@ class ChessUtil:
             return True
         return False
 
-    def is_move_legal(self):
-        pass
+    def is_move_legal(self, figure, move):
+        arrangement_after_move = ChessUtil(create_new_arrangement(self.figures, figure, move))
+        if not arrangement_after_move.is_check(figure.color):
+            return True
+        return False
