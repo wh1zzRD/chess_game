@@ -1,5 +1,6 @@
 import pygame
-from models import Game
+# from models import Game
+from models.game import Game
 
 
 def main():
