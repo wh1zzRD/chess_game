@@ -6,6 +6,7 @@ from models.figure import Figure
 class Bishop(Figure):
     picture_white = pygame.image.load('img/bishop.png')
     picture_black = pygame.image.load('img/black_bishop.png')
+    type = "bishop"
 
     def calculate_moves(self):
         possible_moves = [

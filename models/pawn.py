@@ -7,6 +7,7 @@ from models.queen import Queen
 class Pawn(Figure):
     picture_white = pygame.image.load('img/pawn.png')
     picture_black = pygame.image.load('img/black_pawn.png')
+    type = "pawn"
 
     def calculate_moves(self):
         if self.color:

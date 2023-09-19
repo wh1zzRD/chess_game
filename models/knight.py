@@ -6,6 +6,7 @@ from models.figure import Figure
 class Knight(Figure):
     picture_white = pygame.image.load('img/knight.png')
     picture_black = pygame.image.load('img/black_knight.png')
+    type = "knight"
 
     def calculate_moves(self):
         possible_moves = [

@@ -2,6 +2,8 @@ from typing import Optional
 
 import pygame
 
+from models.chess_util import ChessUtil, create_new_arrangement
+
 
 class Figure:
 
@@ -82,7 +84,7 @@ class Figure:
         for figure in self.game.calculation_figures:
             if figure.x == coords[0] and figure.y == coords[1]:
                 return figure
-        return False
+        return None
 
     def remove_if_figure(self):
         possible_moves = self.calculate_moves()
@@ -107,8 +109,8 @@ class Figure:
         possible_moves = self.remove_if_figure()
         legal_moves = []
         for move in possible_moves:
-            new_arrangement = self.game.create_temp_arrangement(self, move)
-            if not self.game.is_check_in_given_arrangement(new_arrangement, self.color):
+            current_arrangement = ChessUtil(self.game.figures)
+            if current_arrangement.is_move_legal(self, move):
                 legal_moves.append(move)
 
         return legal_moves

@@ -81,3 +81,10 @@ class LegalMoveTest(unittest.TestCase):
         f = get_figure(arrangement, Rook, 7, 7)
         util = ChessUtil(arrangement)
         self.assertEqual(util.is_move_legal(f, (7, 4)), True)
+
+    def test_ten(self):
+        game = Game()
+        arrangement = FenConverter.fen_converter(game, "8/7k/8/8/2K5/8/8/6R1")
+        f = get_figure(arrangement, King, 7, 1)
+        util = ChessUtil(arrangement)
+        self.assertEqual(util.is_move_legal(f, (6, 1)), False)

@@ -1,6 +1,3 @@
-from models.king import King
-
-
 def create_new_arrangement(current_arrangement, figure_to_move, move):
     new_arrangement = []
     for figure in current_arrangement:
@@ -21,12 +18,12 @@ class ChessUtil:
 
     def find_king_pos(self, given_side):
         for figure in self.figures:
-            if isinstance(figure, King) and figure.color == given_side:
+            if figure.type == "king" and figure.color == given_side:
                 return figure.x, figure.y
 
     def find_king(self, given_side):
         for figure in self.figures:
-            if isinstance(figure, King) and figure.color == given_side:
+            if figure.type == "king" and figure.color == given_side:
                 return figure
 
     def is_any_figure_in_coords(self, coords):
