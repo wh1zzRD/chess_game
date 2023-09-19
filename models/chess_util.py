@@ -4,6 +4,9 @@ from models.king import King
 def create_new_arrangement(current_arrangement, figure_to_move, move):
     new_arrangement = []
     for figure in current_arrangement:
+        if figure.x == move[0] and figure.y == move[1] and figure.color != figure_to_move.color:
+            continue
+
         if figure == figure_to_move:
             new_arrangement.append(type(figure)(figure.game, move[0], move[1], figure.color))
         else:
