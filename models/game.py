@@ -30,9 +30,7 @@ class Game:
         self.result = None
         self.turn = 1
         # self.figures = FenConverter.fen_converter(self, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR")
-        self.figures = FenConverter.fen_converter(self, "1rr5/8/8/7k/8/8/K7/8")
-        # self.figures = FenConverter.fen_converter(self, "2r5/3r4/6k1/8/8/8/1K6/8")
-        self.calculation_figures = self.figures.copy()
+        self.figures = FenConverter.fen_converter(self, "2r5/8/5k2/8/8/3Q4/1K6/8")
 
     def run(self):
         while self.keep_doing:
@@ -45,8 +43,8 @@ class Game:
     def draw(self):
         self.draw_board()
         self.draw_board_coordinates()
-        self.draw_figures()
         self.draw_selected_figures_moves()
+        self.draw_figures()
         self.draw_result()
         pygame.display.flip()
 
@@ -99,6 +97,12 @@ class Game:
         for figure in self.figures:
             figure.draw()
 
+    def is_any_figure_in_coords(self, coords):
+        for figure in self.figures:
+            if figure.x == coords[0] and figure.y == coords[1]:
+                return figure
+        return None
+
     def draw_result(self):
         if self.mate or self.stalemate:
             result_image = self.font.render("Result: " + str(self.result), True, (120, 218, 127))
@@ -114,7 +118,7 @@ class Game:
     def check_mate(self):
         for figure in self.figures:
             if figure.color != self.turn:
-                if figure.remove_if_check():
+                if figure.get_legal_moves():
                     self.mate = False
                     return False
 
@@ -157,7 +161,6 @@ class Game:
             self.keep_doing = False
 
     def process_figure_handling_event(self, event):
-        self.calculation_figures = self.figures.copy()
         if event.type == pygame.MOUSEBUTTONDOWN:
 
             if event.button == 1:
@@ -197,31 +200,8 @@ class Game:
         for figure in self.figures:
             if mouse_x == figure.x and mouse_y == figure.y:
                 if figure.color == self.turn:
-                    figure.set_as_selected()
-                    self.selected_figure_moves = figure.remove_if_check()
+                    figure.select()
+                    self.selected_figure_moves = figure.get_legal_moves()
                     print(self.selected_figure_moves)
                     self.selected_figure = figure
                     break
-
-    def is_check_in_given_arrangement(self, arrangement, given_side_color):
-        king_pos = ()
-        for figure in arrangement:
-            if isinstance(figure, King) and figure.color == given_side_color:
-                king_pos = (figure.x, figure.y)
-                # TODO add break when found
-
-        for figure in arrangement:
-            if figure.color != given_side_color and king_pos in figure.remove_if_figure():
-                return True
-
-        return False
-
-    def create_temp_arrangement(self, given_figure, new_pos):
-        self.calculation_figures = []
-        for figure in self.figures:
-            if figure == given_figure:
-                self.calculation_figures.append(type(figure)(self, new_pos[0], new_pos[1], figure.color))
-            else:
-                self.calculation_figures.append(figure)
-
-        return self.calculation_figures
