@@ -67,16 +67,17 @@ class Figure:
         mouse_coordinates = (mouse_x, mouse_y)
 
         if mouse_coordinates in self.get_legal_moves():
-            figure_in_coords = self.game.is_any_figure_in_coords(mouse_coordinates)
+            figure_in_coords = self.game.get_figure_in_coords(mouse_coordinates)
             if figure_in_coords:
                 for figure in self.game.figures:
                     if figure == figure_in_coords:
                         self.game.figures.remove(figure_in_coords)
                         break
             self.x, self.y = mouse_coordinates
-            return True
-        else:
-            return False
+
+            self.game.turn = not self.color
+            self.deselect()
+            self.game.selected_figure = None
 
     def draw_possible_moves(self, moves):
         """Draws the possible moves of the figure as circles in the respective coordinates."""
@@ -104,7 +105,7 @@ class Figure:
 
         for direction in possible_moves:
             for move in direction:
-                is_figure_in_way = self.game.is_any_figure_in_coords(move)
+                is_figure_in_way = self.game.get_figure_in_coords(move)
                 if is_figure_in_way:
                     if is_figure_in_way.color != self.color:
                         legal_moves.append(move)

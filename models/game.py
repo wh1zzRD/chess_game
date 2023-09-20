@@ -1,11 +1,11 @@
-import time
 from typing import Optional
 
 import pygame
 
+from models.chess_util import ChessUtil
 from models.fen import FenConverter
 from models.figure import Figure
-from models.king import King
+from models.board import Board
 
 
 class Game:
@@ -24,165 +24,89 @@ class Game:
         self.selected_figure_moves = []
         self.keep_doing = True
 
-        self.check = False
-        self.mate = False
-        self.stalemate = False
-        self.result = None
+        self.board = Board(self)
+
         self.turn = 1
         # self.figures = FenConverter.fen_converter(self, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR")
-        self.figures = FenConverter.fen_converter(self, "2r5/8/5k2/8/8/3Q4/1K6/8")
+        self.figures = FenConverter.fen_converter(self, "8/8/7k/8/8/8/1K1R4/6R1")
 
     def run(self):
         while self.keep_doing:
             self.clock.tick(self.FPS)
             self.draw()
             self.process_events()
+            self.handle_game_status()
 
         pygame.quit()
 
     def draw(self):
-        self.draw_board()
-        self.draw_board_coordinates()
-        self.draw_selected_figures_moves()
-        self.draw_figures()
-        self.draw_result()
-        pygame.display.flip()
+        self.board.draw()
 
     def process_events(self):
         for event in pygame.event.get():
             self.process_exit_event(event)
-            self.process_figure_handling_event(event)
+            self.process_mouse_button_down_event(event)
 
-    def draw_board(self):
-        self.display.fill((97, 53, 7))
-        x_field_position = 35
-        y_field_position = 35
-
-        for i in range(32):
-            color = (218, 163, 120)
-            pygame.draw.rect(self.display, color, pygame.Rect(x_field_position, y_field_position, 100, 100))
-
-            x_field_position += 200
-            if x_field_position == 835:
-                x_field_position = 135
-                y_field_position += 100
-
-            elif x_field_position == 935:
-                x_field_position = 35
-                y_field_position += 100
-
-    def draw_board_coordinates(self):
-        y_pos = 65
-        x_pos = 75
-
-        # Displaying numbers on left and right side of the field
-        for number in range(ord("1"), ord("1") + 8):
-            if y_pos == 830:
-                y_pos = 30
-            letter = self.font.render(chr(number), True, (218, 163, 120))
-            self.display.blit(letter, (845, y_pos))
-            self.display.blit(letter, (10, y_pos))
-            y_pos += 100
-
-        # Displaying letters on top and bottom of the field
-        for symbol in range(ord("A"), ord("A") + 8):
-            if x_pos == 840:
-                x_pos = 40
-            num = self.font.render(chr(symbol), True, (218, 163, 120))
-            self.display.blit(num, (x_pos, 830))
-            self.display.blit(num, (x_pos, -5))
-            x_pos += 100
-
-    def draw_figures(self):
-        for figure in self.figures:
-            figure.draw()
-
-    def is_any_figure_in_coords(self, coords):
+    def get_figure_in_coords(self, coords):
         for figure in self.figures:
             if figure.x == coords[0] and figure.y == coords[1]:
                 return figure
         return None
 
-    def draw_result(self):
-        if self.mate or self.stalemate:
-            result_image = self.font.render("Result: " + str(self.result), True, (120, 218, 127))
-            self.display.blit(result_image, (300, 400))
-            pygame.display.update()
-            time.sleep(3)
-            self.keep_doing = False
+    def is_mate(self):
+        arrangement = ChessUtil(self.figures)
+        return arrangement.is_mate(0) or arrangement.is_mate(1)
 
-    def draw_selected_figures_moves(self):
-        if self.selected_figure is not None:
-            self.selected_figure.draw_possible_moves(self.selected_figure_moves)
+    def is_check(self):
+        arrangement = ChessUtil(self.figures)
+        return arrangement.is_check(0) or arrangement.is_check(1)
 
-    def check_mate(self):
-        for figure in self.figures:
-            if figure.color != self.turn:
-                if figure.get_legal_moves():
-                    self.mate = False
-                    return False
-
-        self.mate = True
-        return True
-
-    def check_check(self):
-        king_pos = None
-        for figure in self.figures:
-            if isinstance(figure, King) and figure.color != self.turn:
-                king_pos = [figure.x, figure.y]
-                break
-
-        for figure in self.figures:
-            if figure.color == self.turn:
-                if king_pos in figure.calculate_moves():
-                    self.check = True
-                    return True
-
-        self.check = False
-        return False
+    def is_stalemate(self):
+        arrangement = ChessUtil(self.figures)
+        return arrangement.is_stalemate(0) or arrangement.is_stalemate(1)
 
     def handle_game_status(self):
-        if self.check_check() and self.check_mate():
-            self.result = "checkmate"
-        if not self.check_check() and self.check_mate():
-            self.mate = False
-            self.stalemate = True
-            self.result = "stalemate"
-
-    @staticmethod
-    def convert_mouse_coordinates_to_field_coordinates(mouse_coordinates):
-        mouse_x = (mouse_coordinates[0] - 35) // 100
-        mouse_y = (mouse_coordinates[1] - 35) // 100
-
-        return mouse_x, mouse_y
+        if self.is_mate():
+            self.keep_doing = False
+            self.board.draw()
+            self.board.draw_result("checkmate")
+        if self.is_stalemate():
+            self.keep_doing = False
+            self.board.draw()
+            self.board.draw_result("stalemate")
 
     def process_exit_event(self, event):
         if event.type == pygame.QUIT:
             self.keep_doing = False
 
-    def process_figure_handling_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
+    def process_mouse_button_down_event(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
 
-            if event.button == 1:
-                mouse_x, mouse_y = self.convert_mouse_coordinates_to_field_coordinates(pygame.mouse.get_pos())
+            mouse_x, mouse_y = self.board.convert_mouse_coordinates_to_board_coordinates(pygame.mouse.get_pos())
+            self.figure_selection_events(mouse_x, mouse_y)
+            if self.selected_figure is not None:
+                self.selected_figure.move(mouse_x, mouse_y)
 
-                if self.selected_figure is not None:
-                    if self._handling_figure_deselection(mouse_x, mouse_y):
-                        return
-                    if self.selected_figure.move(mouse_x, mouse_y):
-                        self._handling_figure_post_move()
-                else:
-                    self._handling_figure_selection(mouse_x, mouse_y)
+    def figure_selection_events(self, mouse_x, mouse_y):
+        # either selection, deselection or reselection
+        if self.selected_figure is None:
+            self.handling_figure_selection(mouse_x, mouse_y)
+        else:
+            self.handling_figure_deselection(mouse_x, mouse_y)
 
-    def _handling_figure_deselection(self, mouse_x, mouse_y):
+    def handling_figure_deselection(self, mouse_x, mouse_y):
         if mouse_x == self.selected_figure.x and mouse_y == self.selected_figure.y:
             self.selected_figure.deselect()
             self.selected_figure = None
-            return True
 
-        return False
+    def handling_figure_selection(self, mouse_x, mouse_y):
+        figure = self.get_figure_in_coords((mouse_x, mouse_y))
+        if figure is not None and figure.color == self.turn:
+            self.selected_figure = figure
+            self.selected_figure_moves = figure.get_legal_moves()
+            figure.select()
 
-    def _handling_figure_post_move(self):
+    def handling_figure_post_move(self):
         if self.pawn_switched_to_queen:
             for figure in self.figures:
                 if [figure.x, figure.y] == [self.selected_figure.x, self.selected_figure.y]:
@@ -195,13 +119,3 @@ class Game:
         self.turn = not self.selected_figure.color
         self.selected_figure.deselect()
         self.selected_figure = None
-
-    def _handling_figure_selection(self, mouse_x, mouse_y):
-        for figure in self.figures:
-            if mouse_x == figure.x and mouse_y == figure.y:
-                if figure.color == self.turn:
-                    figure.select()
-                    self.selected_figure_moves = figure.get_legal_moves()
-                    print(self.selected_figure_moves)
-                    self.selected_figure = figure
-                    break
