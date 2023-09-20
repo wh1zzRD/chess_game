@@ -12,16 +12,10 @@ class Game:
 
     def __init__(self):
         pygame.init()
-        width, height = 870, 870
         self.FPS = 40
-        self.display = pygame.display.set_mode((width, height))
         self.clock = pygame.time.Clock()
-        self.font = pygame.font.SysFont('Comic Sans MS', 30)
-
-        self.pawn_switched_to_queen = False
 
         self.selected_figure: Optional[Figure] = None
-        self.selected_figure_moves = []
         self.keep_doing = True
 
         self.board = Board(self)
@@ -81,7 +75,6 @@ class Game:
 
     def process_mouse_button_down_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-
             mouse_x, mouse_y = self.board.convert_mouse_coordinates_to_board_coordinates(pygame.mouse.get_pos())
             self.figure_selection_events(mouse_x, mouse_y)
             if self.selected_figure is not None:
@@ -103,19 +96,4 @@ class Game:
         figure = self.get_figure_in_coords((mouse_x, mouse_y))
         if figure is not None and figure.color == self.turn:
             self.selected_figure = figure
-            self.selected_figure_moves = figure.get_legal_moves()
             figure.select()
-
-    def handling_figure_post_move(self):
-        if self.pawn_switched_to_queen:
-            for figure in self.figures:
-                if [figure.x, figure.y] == [self.selected_figure.x, self.selected_figure.y]:
-                    self.selected_figure = figure
-                    self.pawn_switched_to_queen = False
-                    break
-
-        self.handle_game_status()
-
-        self.turn = not self.selected_figure.color
-        self.selected_figure.deselect()
-        self.selected_figure = None

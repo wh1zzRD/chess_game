@@ -75,7 +75,7 @@ class Board:
 
     def draw_selected_figures_moves(self):
         if self.game.selected_figure is not None:
-            self.game.selected_figure.draw_possible_moves(self.game.selected_figure_moves)
+            self.game.selected_figure.draw_possible_moves()
 
     def draw_result(self, result):
         result_image = self.font.render("Result: " + str(result), True, self.green_color)
@@ -83,9 +83,8 @@ class Board:
         pygame.display.update()
         time.sleep(3)
 
-    @staticmethod
-    def convert_mouse_coordinates_to_board_coordinates(mouse_coordinates):
-        mouse_x = (mouse_coordinates[0] - 35) // 100
-        mouse_y = (mouse_coordinates[1] - 35) // 100
+    def convert_mouse_coordinates_to_board_coordinates(self, mouse_coordinates):
+        mouse_x = (mouse_coordinates[0] - self.coordinates_width) // self.field_side
+        mouse_y = (mouse_coordinates[1] - self.coordinates_width) // self.field_side
 
         return mouse_x, mouse_y

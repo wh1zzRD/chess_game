@@ -6,7 +6,6 @@ from models.figure import Figure
 class Rook(Figure):
     picture_white = pygame.image.load('img/rook.png')
     picture_black = pygame.image.load('img/black_rook.png')
-    type = "rook"
 
     def calculate_moves(self):
         possible_moves = [

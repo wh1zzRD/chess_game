@@ -5,7 +5,7 @@ from models.chess_util import ChessUtil
 
 class Figure:
     """
-    Class that describes a generic piece. The attributes are coordinates and color and the game.
+    Class that describes a generic piece. The attributes are coordinates, color and the game.
     """
 
     @property
@@ -15,6 +15,10 @@ class Figure:
     @property
     def picture_black(self):
         raise NotImplementedError()
+
+    @property
+    def is_king(self):
+        return False
 
     def __init__(self, game, x, y, color):  # TODO change parameters x, y to tuple
         """
@@ -40,7 +44,7 @@ class Figure:
 
     def draw(self):
         """Draws the figure on the screen in its coordinates."""
-        self.game.display.blit(self.image, (self.x * 100 + 35, self.y * 100 + 35))
+        self.game.board.display.blit(self.image, (self.x * 100 + 35, self.y * 100 + 35))
 
     def select(self):
         """Makes the image of the figure bigger, when it's selected."""
@@ -79,10 +83,10 @@ class Figure:
             self.deselect()
             self.game.selected_figure = None
 
-    def draw_possible_moves(self, moves):
+    def draw_possible_moves(self):
         """Draws the possible moves of the figure as circles in the respective coordinates."""
-        for move in moves:
-            pygame.draw.circle(self.game.display, (80, 80, 80), (move[0] * 100 + 85, move[1] * 100 + 85), 20)
+        for move in self.get_legal_moves():
+            pygame.draw.circle(self.game.board.display, (80, 80, 80), (move[0] * 100 + 85, move[1] * 100 + 85), 20)
 
     def calculate_moves(self):
         """

@@ -6,7 +6,6 @@ from models.figure import Figure
 class Queen(Figure):
     picture_white = pygame.image.load('img/queen.png')
     picture_black = pygame.image.load('img/black_queen.png')
-    type = "queen"
 
     def calculate_moves(self):
         possible_moves = [

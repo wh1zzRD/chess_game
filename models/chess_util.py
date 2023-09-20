@@ -18,12 +18,12 @@ class ChessUtil:
 
     def find_king_pos(self, given_side):
         for figure in self.figures:
-            if figure.type == "king" and figure.color == given_side:
+            if figure.is_king and figure.color == given_side:
                 return figure.x, figure.y
 
     def find_king(self, given_side):
         for figure in self.figures:
-            if figure.type == "king" and figure.color == given_side:
+            if figure.is_king and figure.color == given_side:
                 return figure
 
     def is_any_figure_in_coords(self, coords):
