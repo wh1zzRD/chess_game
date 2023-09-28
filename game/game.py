@@ -2,10 +2,10 @@ from typing import Optional
 
 import pygame
 
-from models.chess_util import ChessUtil
-from models.fen import FenConverter
+from game.utils.game_status_handler import GameStatusHandler
+from game.utils.fen import FenConverter
 from models.figure import Figure
-from models.board import Board
+from game.board import Board
 
 
 class Game:
@@ -115,21 +115,21 @@ class Game:
         """
         :return: True if the game has reached checkmate, False if not.
         """
-        arrangement = ChessUtil(self.figures)
+        arrangement = GameStatusHandler(self.figures)
         return arrangement.is_mate(0) or arrangement.is_mate(1)
 
     def is_check(self):
         """
         :return: True if any side is in check right now, False if not.
         """
-        arrangement = ChessUtil(self.figures)
+        arrangement = GameStatusHandler(self.figures)
         return arrangement.is_check(0) or arrangement.is_check(1)
 
     def is_stalemate(self):
         """
         :return: True if the game has reached stalemate, False if not.
         """
-        arrangement = ChessUtil(self.figures)
+        arrangement = GameStatusHandler(self.figures)
         return arrangement.is_stalemate(0) or arrangement.is_stalemate(1)
 
     def handle_game_status(self):

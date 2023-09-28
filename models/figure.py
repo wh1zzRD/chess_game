@@ -1,6 +1,6 @@
 import pygame
 
-from models.chess_util import ChessUtil
+from game.utils.game_status_handler import GameStatusHandler
 
 
 class Figure:
@@ -126,7 +126,7 @@ class Figure:
         possible_moves = self.get_all_moves()
         legal_moves = []
         for move in possible_moves:
-            current_arrangement = ChessUtil(self.game.figures)
+            current_arrangement = GameStatusHandler(self.game.figures)
             if current_arrangement.is_move_legal(self, move):
                 legal_moves.append(move)
 

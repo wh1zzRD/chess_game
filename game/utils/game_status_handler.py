@@ -12,7 +12,7 @@ def create_new_arrangement(current_arrangement, figure_to_move, move):
     return new_arrangement
 
 
-class ChessUtil:
+class GameStatusHandler:
     def __init__(self, arrangement):
         self.figures = arrangement.copy()
 
@@ -59,7 +59,7 @@ class ChessUtil:
             for figure in self.figures:
                 if figure.color == given_side:
                     for move in self.get_moves(figure):
-                        new_arrangement = ChessUtil(create_new_arrangement(self.figures, figure, move))
+                        new_arrangement = GameStatusHandler(create_new_arrangement(self.figures, figure, move))
                         if not new_arrangement.is_check(given_side):
                             return False
             return True
@@ -70,14 +70,14 @@ class ChessUtil:
             for figure in self.figures:
                 if figure.color == given_side:
                     for move in self.get_moves(figure):
-                        new_arrangement = ChessUtil(create_new_arrangement(self.figures, figure, move))
+                        new_arrangement = GameStatusHandler(create_new_arrangement(self.figures, figure, move))
                         if not new_arrangement.is_check(given_side):
                             return False
             return True
         return False
 
     def is_move_legal(self, figure, move):
-        arrangement_after_move = ChessUtil(create_new_arrangement(self.figures, figure, move))
+        arrangement_after_move = GameStatusHandler(create_new_arrangement(self.figures, figure, move))
         if not arrangement_after_move.is_check(figure.color):
             return True
         return False

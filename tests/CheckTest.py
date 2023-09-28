@@ -1,10 +1,8 @@
 import unittest
-import os
-import shutil
 
-from models.chess_util import ChessUtil
-from models.fen import FenConverter
-from models.game import Game
+from game.utils.game_status_handler import GameStatusHandler
+from game.utils.fen import FenConverter
+from game.game import Game
 
 
 class CheckTest(unittest.TestCase):
@@ -34,29 +32,29 @@ class CheckTest(unittest.TestCase):
     def test_one(self):
         game = Game()
         arrangement = FenConverter.fen_converter(game, "3rr3/8/8/7k/3K4/8/8/8")
-        util = ChessUtil(arrangement)
+        util = GameStatusHandler(arrangement)
         self.assertEqual(util.is_check(1), True)
 
     def test_two(self):
         game = Game()
         arrangement = FenConverter.fen_converter(game, "3rr3/8/8/7k/3K4/8/8/3Q4")
-        util = ChessUtil(arrangement)
+        util = GameStatusHandler(arrangement)
         self.assertEqual(util.is_check(0), True)
 
     def test_three(self):
         game = Game()
         arrangement = FenConverter.fen_converter(game, "4K3/8/8/8/8/8/8/3k4")
-        util = ChessUtil(arrangement)
+        util = GameStatusHandler(arrangement)
         self.assertEqual(util.is_check(1), False)
 
     def test_four(self):
         game = Game()
         arrangement = FenConverter.fen_converter(game, "4K3/3R4/8/7B/8/8/8/3k4")
-        util = ChessUtil(arrangement)
+        util = GameStatusHandler(arrangement)
         self.assertEqual(util.is_check(0), True)
 
     def test_five(self):
         game = Game()
         arrangement = FenConverter.fen_converter(game, "4K3/2R5/7B/8/8/8/8/3k4")
-        util = ChessUtil(arrangement)
+        util = GameStatusHandler(arrangement)
         self.assertEqual(util.is_check(0), False)
