@@ -1,11 +1,14 @@
+import os
+
 import pygame
 
+from game.Path import get_img_folder_path
 from models.figure import Figure
 
 
 class Rook(Figure):
-    picture_white = pygame.image.load('img/rook.png')
-    picture_black = pygame.image.load('img/black_rook.png')
+    picture_white = pygame.image.load(os.path.join(get_img_folder_path(), "rook.png"))
+    picture_black = pygame.image.load(os.path.join(get_img_folder_path(), "black_rook.png"))
 
     def calculate_moves(self):
         possible_moves = [

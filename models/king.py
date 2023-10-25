@@ -1,14 +1,22 @@
+import os
+
 import pygame
 
+from game.Path import get_img_folder_path
 from models.figure import Figure
 
 
 class King(Figure):
-    picture_white = pygame.image.load('img/king.png')
-    picture_black = pygame.image.load('img/black_king.png')
+    picture_white = pygame.image.load(os.path.join(get_img_folder_path(), "king.png"))
+    picture_black = pygame.image.load(os.path.join(get_img_folder_path(), "black_king.png"))
 
     @property
     def is_king(self):
+        """
+        This figure is a King
+        Returns:
+            bool: True since this figure is the King
+        """
         return True
 
     def calculate_moves(self):

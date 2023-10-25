@@ -18,14 +18,20 @@ class Figure:
 
     @property
     def is_king(self):
+        """
+        Whether the figure is a King or not. This method should be overwritten in class King.
+        Returns:
+            bool: True if that is the case, False if not
+        """
         return False
 
     def __init__(self, game, x, y, color):  # TODO change parameters x, y to tuple
         """
-        :param game: game object
-        :param x: x coordinate of the figure
-        :param y: y coordinate of the figure
-        :param color: side / color of the figure
+        Args:
+            game (Game): game object
+            x (int): x coordinate of the figure
+            y (int): y coordinate of the figure
+            color (int): side / color of the figure
         """
         self.game = game
         self.x = x
@@ -64,9 +70,13 @@ class Figure:
     def move(self, mouse_x, mouse_y):  # TODO change mouse coordinates to a tuple
         """
         Moves the figure to the given coordinates if it is possible.
-        :param mouse_x: x coordinate of the field, where the player tries to move the figure
-        :param mouse_y: y coordinate of the field, where the player tries to move the figure
-        :return: True if move was possible (legal) and the figure was moved and False is not
+
+        Args:
+            mouse_x (int): x coordinate of the field, where the player tries to move the figure
+            mouse_y (int): y coordinate of the field, where the player tries to move the figure
+
+        Returns:
+            bool: True if move was possible (legal) and the figure was moved and False is not
         """
         mouse_coordinates = (mouse_x, mouse_y)
 
@@ -93,16 +103,20 @@ class Figure:
         Calculates all possible moves of the figure, ignoring its legality and other figures. Only considers the
         edges of the board or specific rules on how the figure can move (e.g. King, Pawn, knight).
         This method should be overwritten for each subclass of Figure, since all figures move differently.
-        :return: possible moves
+
+        Returns:
+            list[tuple(int, int)]: possible moves
         """
         raise NotImplementedError("This method should be implemented in child classes")
 
     def get_all_moves(self):
         """
-        if the path to the move is blocked by a different figure, that move and all the next moves on the same path
+        If the path to the move is blocked by a different figure, that move and all the next moves on the same path
         are removed from possible moves. If the figure blocking the path is the figure of the opposing color, that move
         is still added to the possible moves (representing capturing the figure), but all the following ones are not.
-        :return: moves that are not blocked by other figures
+
+        Returns:
+            list[tuple(int, int)]: moves that are not blocked by other figures
         """
         possible_moves = self.calculate_moves()
         legal_moves = []
@@ -121,7 +135,9 @@ class Figure:
     def get_legal_moves(self):
         """
         If the move is not legal, or rather will put you in check, such move is not added to legal moves.
-        :return: list with legal moves
+
+        Returns:
+            list[tuple(int, int)]: list with legal moves
         """
         possible_moves = self.get_all_moves()
         legal_moves = []
@@ -136,7 +152,9 @@ class Figure:
         """
         Calculates the possible moves of the figure from current position to the right end of the board (horizontally)
         (ignoring the pieces). Only considers the edges of the board.
-        :return: possible moves
+
+        Returns:
+            list[tuple(int, int)]: possible moves
         """
         possible_moves = []
         temp_x = self.x + 1
@@ -150,7 +168,9 @@ class Figure:
         """
         Calculates the possible moves of the figure from current position to the left end of the board (horizontally)
         (ignoring the pieces). Only considers the edges of the board.
-        :return: possible moves
+
+        Returns:
+            list[tuple(int, int)]: possible moves
         """
         possible_moves = []
         temp_x = self.x - 1
@@ -164,7 +184,9 @@ class Figure:
         """
         Calculates the possible moves of the figure from current position to the top end of the board (vertically)
         (ignoring the pieces). Only considers the edges of the board.
-        :return: possible moves
+
+        Returns:
+            list[tuple(int, int)]: possible moves
         """
         possible_moves = []
         temp_y = self.y - 1
@@ -178,7 +200,9 @@ class Figure:
         """
         Calculates the possible moves of the figure from current position to the bottom end of the board (vertically)
         (ignoring the pieces). Only considers the edges of the board.
-        :return: possible moves
+
+        Returns:
+            list[tuple(int, int)]: possible moves
         """
         possible_moves = []
         temp_y = self.y + 1
@@ -192,7 +216,9 @@ class Figure:
         """
         Calculates the possible moves of the figure from current position going up and right (diagonally)
         (ignoring the pieces). Only considers the edges of the board.
-        :return: possible moves
+
+        Returns:
+            list[tuple(int, int)]: possible moves
         """
         possible_moves = []
         temp_x, temp_y = self.x + 1, self.y - 1
@@ -207,7 +233,9 @@ class Figure:
         """
         Calculates the possible moves of the figure from current position going up and left (diagonally)
         (ignoring the pieces). Only considers the edges of the board.
-        :return: possible moves
+
+        Returns:
+            list[tuple(int, int)]: possible moves
         """
         possible_moves = []
         temp_x, temp_y = self.x - 1, self.y - 1
@@ -222,7 +250,9 @@ class Figure:
         """
         Calculates the possible moves of the figure from current position going down and right (diagonally)
         (ignoring the pieces). Only considers the edges of the board.
-        :return: possible moves
+
+        Returns:
+            list[tuple(int, int)]: possible moves
         """
         possible_moves = []
         temp_x, temp_y = self.x + 1, self.y + 1
@@ -237,7 +267,9 @@ class Figure:
         """
         Calculates the possible moves of the figure from current position going down and left (diagonally)
         (ignoring the pieces). Only considers the edges of the board.
-        :return: possible moves
+
+        Returns:
+            list[tuple(int, int)]: possible moves
         """
         possible_moves = []
         temp_x, temp_y = self.x - 1, self.y + 1

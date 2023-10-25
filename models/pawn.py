@@ -1,12 +1,15 @@
+import os
+
 import pygame
 
+from game.Path import get_img_folder_path
 from models.figure import Figure
 from models.queen import Queen
 
 
 class Pawn(Figure):
-    picture_white = pygame.image.load('img/pawn.png')
-    picture_black = pygame.image.load('img/black_pawn.png')
+    picture_white = pygame.image.load(os.path.join(get_img_folder_path(), "pawn.png"))
+    picture_black = pygame.image.load(os.path.join(get_img_folder_path(), "black_pawn.png"))
 
     def calculate_moves(self):
         if self.color:

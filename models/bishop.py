@@ -1,11 +1,14 @@
+import os
+
 import pygame
 
 from models.figure import Figure
+from game.Path import get_img_folder_path
 
 
 class Bishop(Figure):
-    picture_white = pygame.image.load('img/bishop.png')
-    picture_black = pygame.image.load('img/black_bishop.png')
+    picture_white = pygame.image.load(os.path.join(get_img_folder_path(), "bishop.png"))
+    picture_black = pygame.image.load(os.path.join(get_img_folder_path(), "black_bishop.png"))
 
     def calculate_moves(self):
         possible_moves = [

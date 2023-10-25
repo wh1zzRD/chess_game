@@ -7,8 +7,22 @@ from models.rook import Rook
 
 
 class FenConverter:
+    """
+    Class to handle the Forsyth–Edwards Notation to describe a particular board position in the game.
+    https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation
+    """
     @staticmethod
     def fen_converter(game, fen):
+        """
+        Converts a FEN string into a set of figures.
+
+        Args:
+            game (Game): The game that figures will be a part of.
+            fen (str): The string with the FEN to be converted.
+
+        Returns:
+            set: A set of objects of figure subclasses.
+        """
 
         rows = fen.split("/")
         figures = set()
@@ -53,6 +67,15 @@ class FenConverter:
 
     @staticmethod
     def into_fen_converter(figures):
+        """
+        Converts a given position on the board into a FEN.
+
+        Args:
+            figures (set): The set of figures representing the position to be converted into FEN.
+
+        Returns:
+            str: A string with the FEN.
+        """
         fen = ""
         current_symbol = ""
         counter = 0
