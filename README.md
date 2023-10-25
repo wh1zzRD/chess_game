@@ -1,6 +1,7 @@
 # PyChess
 made by Tim Seleznev aka wh1zzRD
-
+<br>
+You can find the documentation for the project [here](https://wh1zzrd.github.io/chess_game/)
 ---
 
 ## Description
