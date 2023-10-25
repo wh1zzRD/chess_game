@@ -4,18 +4,18 @@ models package
 Submodules
 ----------
 
-models.figure module
---------------------
-
-.. automodule:: models.figure
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 models.bishop module
 --------------------
 
 .. automodule:: models.bishop
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+models.figure module
+--------------------
+
+.. automodule:: models.figure
    :members:
    :undoc-members:
    :show-inheritance:
