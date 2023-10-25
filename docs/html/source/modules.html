@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>game &mdash; PyChess 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="game package" href="game.html" />
+    <link rel="prev" title="Welcome to PyChess’s documentation!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyChess
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">game</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="game.html">game package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">models package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyChess</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">game</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/modules.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="game">
+<h1>game<a class="headerlink" href="#game" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="game.html">game package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="game.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="game.utils.html">game.utils package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="game.utils.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.utils.html#module-game.utils.fen">game.utils.fen module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.utils.html#module-game.utils.game_status_handler">game.utils.game_status_handler module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.utils.html#module-game.utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#module-game.Path">game.Path module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="game.html#game.Path.get_img_folder_path"><code class="docutils literal notranslate"><span class="pre">get_img_folder_path()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#module-game.board">game.board module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="game.html#game.board.Board"><code class="docutils literal notranslate"><span class="pre">Board</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.board.Board.convert_mouse_coordinates_to_board_coordinates"><code class="docutils literal notranslate"><span class="pre">Board.convert_mouse_coordinates_to_board_coordinates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.board.Board.draw"><code class="docutils literal notranslate"><span class="pre">Board.draw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.board.Board.draw_board"><code class="docutils literal notranslate"><span class="pre">Board.draw_board()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.board.Board.draw_board_coordinates"><code class="docutils literal notranslate"><span class="pre">Board.draw_board_coordinates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.board.Board.draw_figures"><code class="docutils literal notranslate"><span class="pre">Board.draw_figures()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.board.Board.draw_result"><code class="docutils literal notranslate"><span class="pre">Board.draw_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.board.Board.draw_selected_figures_moves"><code class="docutils literal notranslate"><span class="pre">Board.draw_selected_figures_moves()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#module-game.game">game.game module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="game.html#game.game.Game"><code class="docutils literal notranslate"><span class="pre">Game</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.draw"><code class="docutils literal notranslate"><span class="pre">Game.draw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.figure_selection_events"><code class="docutils literal notranslate"><span class="pre">Game.figure_selection_events()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.get_figure_in_coords"><code class="docutils literal notranslate"><span class="pre">Game.get_figure_in_coords()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.handle_game_status"><code class="docutils literal notranslate"><span class="pre">Game.handle_game_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.handling_figure_deselection"><code class="docutils literal notranslate"><span class="pre">Game.handling_figure_deselection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.handling_figure_selection"><code class="docutils literal notranslate"><span class="pre">Game.handling_figure_selection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.is_check"><code class="docutils literal notranslate"><span class="pre">Game.is_check()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.is_mate"><code class="docutils literal notranslate"><span class="pre">Game.is_mate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.is_stalemate"><code class="docutils literal notranslate"><span class="pre">Game.is_stalemate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.process_events"><code class="docutils literal notranslate"><span class="pre">Game.process_events()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.process_exit_event"><code class="docutils literal notranslate"><span class="pre">Game.process_exit_event()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.process_mouse_button_down_event"><code class="docutils literal notranslate"><span class="pre">Game.process_mouse_button_down_event()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="game.html#game.game.Game.run"><code class="docutils literal notranslate"><span class="pre">Game.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#module-game">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.figure">models.figure module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#models.figure.Figure"><code class="docutils literal notranslate"><span class="pre">Figure</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.calculate_moves"><code class="docutils literal notranslate"><span class="pre">Figure.calculate_moves()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.deselect"><code class="docutils literal notranslate"><span class="pre">Figure.deselect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.draw"><code class="docutils literal notranslate"><span class="pre">Figure.draw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.draw_possible_moves"><code class="docutils literal notranslate"><span class="pre">Figure.draw_possible_moves()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.get_all_moves"><code class="docutils literal notranslate"><span class="pre">Figure.get_all_moves()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.get_legal_moves"><code class="docutils literal notranslate"><span class="pre">Figure.get_legal_moves()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.is_king"><code class="docutils literal notranslate"><span class="pre">Figure.is_king</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.move"><code class="docutils literal notranslate"><span class="pre">Figure.move()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.moves_down"><code class="docutils literal notranslate"><span class="pre">Figure.moves_down()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.moves_down_left"><code class="docutils literal notranslate"><span class="pre">Figure.moves_down_left()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.moves_down_right"><code class="docutils literal notranslate"><span class="pre">Figure.moves_down_right()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.moves_left"><code class="docutils literal notranslate"><span class="pre">Figure.moves_left()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.moves_right"><code class="docutils literal notranslate"><span class="pre">Figure.moves_right()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.moves_up"><code class="docutils literal notranslate"><span class="pre">Figure.moves_up()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.moves_up_left"><code class="docutils literal notranslate"><span class="pre">Figure.moves_up_left()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.moves_up_right"><code class="docutils literal notranslate"><span class="pre">Figure.moves_up_right()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.picture_black"><code class="docutils literal notranslate"><span class="pre">Figure.picture_black</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.picture_white"><code class="docutils literal notranslate"><span class="pre">Figure.picture_white</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.figure.Figure.select"><code class="docutils literal notranslate"><span class="pre">Figure.select()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.bishop">models.bishop module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#models.bishop.Bishop"><code class="docutils literal notranslate"><span class="pre">Bishop</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.bishop.Bishop.calculate_moves"><code class="docutils literal notranslate"><span class="pre">Bishop.calculate_moves()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.bishop.Bishop.picture_black"><code class="docutils literal notranslate"><span class="pre">Bishop.picture_black</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.bishop.Bishop.picture_white"><code class="docutils literal notranslate"><span class="pre">Bishop.picture_white</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.king">models.king module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#models.king.King"><code class="docutils literal notranslate"><span class="pre">King</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.king.King.calculate_moves"><code class="docutils literal notranslate"><span class="pre">King.calculate_moves()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.king.King.is_king"><code class="docutils literal notranslate"><span class="pre">King.is_king</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.king.King.picture_black"><code class="docutils literal notranslate"><span class="pre">King.picture_black</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.king.King.picture_white"><code class="docutils literal notranslate"><span class="pre">King.picture_white</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.knight">models.knight module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#models.knight.Knight"><code class="docutils literal notranslate"><span class="pre">Knight</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.knight.Knight.calculate_moves"><code class="docutils literal notranslate"><span class="pre">Knight.calculate_moves()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.knight.Knight.picture_black"><code class="docutils literal notranslate"><span class="pre">Knight.picture_black</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.knight.Knight.picture_white"><code class="docutils literal notranslate"><span class="pre">Knight.picture_white</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.pawn">models.pawn module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#models.pawn.Pawn"><code class="docutils literal notranslate"><span class="pre">Pawn</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.pawn.Pawn.calculate_moves"><code class="docutils literal notranslate"><span class="pre">Pawn.calculate_moves()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.pawn.Pawn.move"><code class="docutils literal notranslate"><span class="pre">Pawn.move()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.pawn.Pawn.pawn_to_queen"><code class="docutils literal notranslate"><span class="pre">Pawn.pawn_to_queen()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.pawn.Pawn.picture_black"><code class="docutils literal notranslate"><span class="pre">Pawn.picture_black</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.pawn.Pawn.picture_white"><code class="docutils literal notranslate"><span class="pre">Pawn.picture_white</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.queen">models.queen module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#models.queen.Queen"><code class="docutils literal notranslate"><span class="pre">Queen</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.queen.Queen.calculate_moves"><code class="docutils literal notranslate"><span class="pre">Queen.calculate_moves()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.queen.Queen.picture_black"><code class="docutils literal notranslate"><span class="pre">Queen.picture_black</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.queen.Queen.picture_white"><code class="docutils literal notranslate"><span class="pre">Queen.picture_white</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.rook">models.rook module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#models.rook.Rook"><code class="docutils literal notranslate"><span class="pre">Rook</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.rook.Rook.calculate_moves"><code class="docutils literal notranslate"><span class="pre">Rook.calculate_moves()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.rook.Rook.picture_black"><code class="docutils literal notranslate"><span class="pre">Rook.picture_black</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.html#models.rook.Rook.picture_white"><code class="docutils literal notranslate"><span class="pre">Rook.picture_white</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#module-models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#module-tests.CheckTest">tests.CheckTest module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tests.html#tests.CheckTest.CheckTest"><code class="docutils literal notranslate"><span class="pre">CheckTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.CheckTest.CheckTest.setUp"><code class="docutils literal notranslate"><span class="pre">CheckTest.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.CheckTest.CheckTest.tearDown"><code class="docutils literal notranslate"><span class="pre">CheckTest.tearDown()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.CheckTest.CheckTest.test_five"><code class="docutils literal notranslate"><span class="pre">CheckTest.test_five()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.CheckTest.CheckTest.test_four"><code class="docutils literal notranslate"><span class="pre">CheckTest.test_four()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.CheckTest.CheckTest.test_one"><code class="docutils literal notranslate"><span class="pre">CheckTest.test_one()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.CheckTest.CheckTest.test_three"><code class="docutils literal notranslate"><span class="pre">CheckTest.test_three()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.CheckTest.CheckTest.test_two"><code class="docutils literal notranslate"><span class="pre">CheckTest.test_two()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#module-tests.LegalaMoveTest">tests.LegalaMoveTest module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tests.html#tests.LegalaMoveTest.LegalMoveTest"><code class="docutils literal notranslate"><span class="pre">LegalMoveTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.LegalaMoveTest.LegalMoveTest.test_eight"><code class="docutils literal notranslate"><span class="pre">LegalMoveTest.test_eight()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.LegalaMoveTest.LegalMoveTest.test_five"><code class="docutils literal notranslate"><span class="pre">LegalMoveTest.test_five()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.LegalaMoveTest.LegalMoveTest.test_four"><code class="docutils literal notranslate"><span class="pre">LegalMoveTest.test_four()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.LegalaMoveTest.LegalMoveTest.test_nine"><code class="docutils literal notranslate"><span class="pre">LegalMoveTest.test_nine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.LegalaMoveTest.LegalMoveTest.test_one"><code class="docutils literal notranslate"><span class="pre">LegalMoveTest.test_one()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.LegalaMoveTest.LegalMoveTest.test_seven"><code class="docutils literal notranslate"><span class="pre">LegalMoveTest.test_seven()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.LegalaMoveTest.LegalMoveTest.test_six"><code class="docutils literal notranslate"><span class="pre">LegalMoveTest.test_six()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.LegalaMoveTest.LegalMoveTest.test_ten"><code class="docutils literal notranslate"><span class="pre">LegalMoveTest.test_ten()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.LegalaMoveTest.LegalMoveTest.test_three"><code class="docutils literal notranslate"><span class="pre">LegalMoveTest.test_three()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.LegalaMoveTest.LegalMoveTest.test_two"><code class="docutils literal notranslate"><span class="pre">LegalMoveTest.test_two()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tests.html#tests.LegalaMoveTest.get_figure"><code class="docutils literal notranslate"><span class="pre">get_figure()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#module-tests.MateTest">tests.MateTest module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tests.html#tests.MateTest.CheckmateTest"><code class="docutils literal notranslate"><span class="pre">CheckmateTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.MateTest.CheckmateTest.test_five"><code class="docutils literal notranslate"><span class="pre">CheckmateTest.test_five()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.MateTest.CheckmateTest.test_four"><code class="docutils literal notranslate"><span class="pre">CheckmateTest.test_four()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.MateTest.CheckmateTest.test_one"><code class="docutils literal notranslate"><span class="pre">CheckmateTest.test_one()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.MateTest.CheckmateTest.test_six"><code class="docutils literal notranslate"><span class="pre">CheckmateTest.test_six()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.MateTest.CheckmateTest.test_three"><code class="docutils literal notranslate"><span class="pre">CheckmateTest.test_three()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.MateTest.CheckmateTest.test_two"><code class="docutils literal notranslate"><span class="pre">CheckmateTest.test_two()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#module-tests.StalemateTests">tests.StalemateTests module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tests.html#tests.StalemateTests.StalemateTest"><code class="docutils literal notranslate"><span class="pre">StalemateTest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.StalemateTests.StalemateTest.test_five"><code class="docutils literal notranslate"><span class="pre">StalemateTest.test_five()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.StalemateTests.StalemateTest.test_four"><code class="docutils literal notranslate"><span class="pre">StalemateTest.test_four()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.StalemateTests.StalemateTest.test_one"><code class="docutils literal notranslate"><span class="pre">StalemateTest.test_one()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.StalemateTests.StalemateTest.test_six"><code class="docutils literal notranslate"><span class="pre">StalemateTest.test_six()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.StalemateTests.StalemateTest.test_three"><code class="docutils literal notranslate"><span class="pre">StalemateTest.test_three()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tests.html#tests.StalemateTests.StalemateTest.test_two"><code class="docutils literal notranslate"><span class="pre">StalemateTest.test_two()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#module-tests">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to PyChess’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="game.html" class="btn btn-neutral float-right" title="game package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Tim Seleznev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
