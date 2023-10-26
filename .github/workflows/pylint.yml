@@ -26,4 +26,5 @@ jobs:
 
       - name: Run Pylint
         run: |
+          chmod +x ./pylint_runner.sh
           ./pylint_runner.sh
