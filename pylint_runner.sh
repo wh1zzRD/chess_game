@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pylint game models
+pylint game models | tee pylint.txt
 
 score=$(sed -n 's/^Your code has been rated at \([-0-9.]*\)\/.*/\1/p' pylint.txt)
 score_minimal=8.0
