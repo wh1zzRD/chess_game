@@ -1,12 +1,21 @@
+"""
+queen.py
+This module provides:
+- `Bishop(Figure)`: a class to specifically represent a queen in the game.
+"""
+
 import os
 
 import pygame
 
-from game.Path import get_img_folder_path
+from game.path import get_img_folder_path
 from models.figure import Figure
 
 
 class Queen(Figure):
+    """
+    This class represents a queen. calculate_moves() is overwritten according to how a queen moves.
+    """
     picture_white = pygame.image.load(os.path.join(get_img_folder_path(), "queen.png"))
     picture_black = pygame.image.load(os.path.join(get_img_folder_path(), "black_queen.png"))
 

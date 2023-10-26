@@ -1,11 +1,17 @@
+"""
+game.py
+This module provides:
+- `Game`: a class representing the Model and the Controller of the game (MVC)
+"""
+
 from typing import Optional
 
 import pygame
 
 from game.utils.game_status_handler import GameStatusHandler
 from game.utils.fen import FenConverter
-from models.figure import Figure
 from game.board import Board
+from models.figure import Figure
 
 
 class Game:
@@ -24,8 +30,8 @@ class Game:
         self.board = Board(self)
 
         self.turn = 1
-        self.figures = FenConverter.fen_converter(self, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR")
-        # self.figures = FenConverter.fen_converter(self, "8/8/7k/8/8/8/1K1R4/6R1")
+        # self.figures = FenConverter.fen_converter(self, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR")
+        self.figures = FenConverter.fen_converter(self, "4K3/2R5/7B/8/8/8/8/3k4")
 
     def run(self):
         """Starts and runs the game."""
@@ -59,8 +65,8 @@ class Game:
 
     def process_mouse_button_down_event(self, event):
         """
-        Processes all possible events in case the user presses the left mouse button. It can either be figure selection,
-        figure deselection or moving the figure.
+        Processes all possible events in case the user presses the left mouse button.
+        It can either be figure selection, figure deselection or moving the figure.
 
         Args:
             event (Event): pygame event to process

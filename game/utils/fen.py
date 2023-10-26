@@ -1,3 +1,9 @@
+"""
+fen.py
+This module provides a utility class:
+- `FenConverter` processes the FEN
+"""
+
 from models.bishop import Bishop
 from models.king import King
 from models.knight import Knight
@@ -11,8 +17,18 @@ class FenConverter:
     Class to handle the Forsyth–Edwards Notation to describe a particular board position in the game.
     https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation
     """
-    @staticmethod
-    def fen_converter(game, fen):
+
+    piece_to_letter = {
+        "p": Pawn,
+        "r": Rook,
+        "n": Knight,
+        "b": Bishop,
+        "q": Queen,
+        "k": King,
+    }
+
+    @classmethod
+    def fen_converter(cls, game, fen):
         """
         Converts a FEN string into a set of figures.
 
@@ -30,34 +46,11 @@ class FenConverter:
         x, y = 0, 0
         for row in rows:
             for symbol in row:
-                if symbol == "p":
-                    figures.add(Pawn(game, x, y, 0))
-                elif symbol == "P":
-                    figures.add(Pawn(game, x, y, 1))
-                elif symbol == "r":
-                    figures.add(Rook(game, x, y, 0))
-                elif symbol == "R":
-                    figures.add(Rook(game, x, y, 1))
-                elif symbol == "n":
-                    figures.add(Knight(game, x, y, 0))
-                elif symbol == "N":
-                    figures.add(Knight(game, x, y, 1))
-                elif symbol == "b":
-                    figures.add(Bishop(game, x, y, 0))
-                elif symbol == "B":
-                    figures.add(Bishop(game, x, y, 1))
-                elif symbol == "q":
-                    figures.add(Queen(game, x, y, 0))
-                elif symbol == "Q":
-                    figures.add(Queen(game, x, y, 1))
-                elif symbol == "k":
-                    figures.add(King(game, x, y, 0))
-                elif symbol == "K":
-                    figures.add(King(game, x, y, 1))
-
                 if symbol.isdigit():
                     x += int(symbol)
                     continue
+
+                figures.add(cls.piece_to_letter[symbol.lower()](game, x, y, int(symbol.isupper())))
                 x += 1
 
             x = 0
@@ -65,8 +58,8 @@ class FenConverter:
 
         return figures
 
-    @staticmethod
-    def into_fen_converter(figures):
+    @classmethod
+    def into_fen_converter(cls, figures):
         """
         Converts a given position on the board into a FEN.
 
@@ -77,43 +70,31 @@ class FenConverter:
             str: A string with the FEN.
         """
         fen = ""
-        current_symbol = ""
-        counter = 0
+        empty_count = 0
 
         for y in range(8):
             for x in range(8):
-                figure_found = False
+                square_empty = True
                 for figure in figures:
-                    if [figure.x, figure.y] == [x, y]:
-                        figure_found = True
-                        if isinstance(figure, Pawn):
-                            current_symbol = "p"
-                        elif isinstance(figure, Queen):
-                            current_symbol = "q"
-                        elif isinstance(figure, Bishop):
-                            current_symbol = "b"
-                        elif isinstance(figure, King):
-                            current_symbol = "k"
-                        elif isinstance(figure, Knight):
-                            current_symbol = "n"
-                        elif isinstance(figure, Rook):
-                            current_symbol = "r"
-
+                    if figure.x == x and figure.y == y:
+                        square_empty = False
+                        symbol = cls.piece_to_letter.get(type(figure), "")
                         if figure.color == 1:
-                            current_symbol = current_symbol.upper()
+                            symbol = symbol.upper()
+                        fen += symbol
 
-                        if counter:
-                            fen += str(counter)
-                            counter = 0
+                if square_empty:
+                    empty_count += 1
+                else:
+                    if empty_count > 0:
+                        fen += str(empty_count)
+                        empty_count = 0
 
-                        fen += current_symbol
+            if empty_count > 0:
+                fen += str(empty_count)
+                empty_count = 0
 
-                if not figure_found:
-                    counter += 1
+            if y < 7:
+                fen += "/"
 
-            if counter:
-                fen += str(counter)
-                counter = 0
-            fen += "/"
-
-        return fen[:-1]
+        return fen

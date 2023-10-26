@@ -1,3 +1,9 @@
+"""
+path.py
+This module provides:
+- `get_img_folder_path()`: a method to receive the absolute path of the image folder.
+"""
+
 import os
 
 

@@ -1,13 +1,22 @@
+"""
+pawn.py
+This module provides:
+- `Pawn(Figure)`: a class to specifically represent a pawn in the game.
+"""
+
 import os
 
 import pygame
 
-from game.Path import get_img_folder_path
+from game.path import get_img_folder_path
 from models.figure import Figure
 from models.queen import Queen
 
 
 class Pawn(Figure):
+    """
+    This class represents a pawn. calculate_moves() is overwritten according to how a pawn moves.
+    """
     picture_white = pygame.image.load(os.path.join(get_img_folder_path(), "pawn.png"))
     picture_black = pygame.image.load(os.path.join(get_img_folder_path(), "black_pawn.png"))
 
@@ -30,5 +39,8 @@ class Pawn(Figure):
             self.game.pawn_switched_to_queen = True
 
     def pawn_to_queen(self):
+        """
+        Replaces the object of the pawn with the object of a Queen in the same coordinates.
+        """
         self.game.figures.add(Queen(self.game, self.x, self.y, self.color))
         self.game.figures.remove(self)

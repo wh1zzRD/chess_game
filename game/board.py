@@ -1,3 +1,9 @@
+"""
+board.py
+This module provides:
+- `Board`: a class to represent GUI of the game (MVC).
+"""
+
 import time
 
 import pygame
@@ -13,6 +19,10 @@ class Board:
         Args:
             game (Game): game that is being drawn and displayed
         """
+
+        # pylint: disable=too-many-instance-attributes
+        # Ten is reasonable in this case.
+
         self.game = game
 
         self.width, self.height = 870, 870
@@ -44,7 +54,7 @@ class Board:
         x_field_position = self.coordinates_width
         y_field_position = self.coordinates_width
 
-        for i in range(32):
+        for _ in range(32):
             pygame.draw.rect(
                 self.display,
                 self.beige_color,

@@ -2,7 +2,7 @@ chess_game
 ==========
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    game
    main

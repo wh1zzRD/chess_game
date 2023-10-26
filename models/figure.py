@@ -1,3 +1,9 @@
+"""
+figure.py
+This module provides:
+- `Figure`: a parent class for all the pieces in the game.
+"""
+
 import pygame
 
 from game.utils.game_status_handler import GameStatusHandler
@@ -10,10 +16,28 @@ class Figure:
 
     @property
     def picture_white(self):
+        """
+        Get the picture of the white figure associated with this object.
+
+        This property is intended to be implemented in subclasses.
+        Subclasses should provide the black picture by loading it from img folder.
+
+        Raises:
+            NotImplementedError: This property is not implemented in the base class.
+        """
         raise NotImplementedError()
 
     @property
     def picture_black(self):
+        """
+        Get the picture of the black figure associated with this object.
+
+        This property is intended to be implemented in subclasses.
+        Subclasses should provide the black picture by loading it from img folder.
+
+        Raises:
+            NotImplementedError: This property is not implemented in the base class.
+        """
         raise NotImplementedError()
 
     @property
@@ -25,7 +49,7 @@ class Figure:
         """
         return False
 
-    def __init__(self, game, x, y, color):  # TODO change parameters x, y to tuple
+    def __init__(self, game, x, y, color):
         """
         Args:
             game (Game): game object
@@ -67,7 +91,7 @@ class Figure:
         else:
             self.image = pygame.transform.rotozoom(self.picture_black, 0, 0.4)
 
-    def move(self, mouse_x, mouse_y):  # TODO change mouse coordinates to a tuple
+    def move(self, mouse_x, mouse_y):
         """
         Moves the figure to the given coordinates if it is possible.
 

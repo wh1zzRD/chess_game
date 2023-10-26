@@ -12,14 +12,6 @@ Subpackages
 Submodules
 ----------
 
-game.Path module
-----------------
-
-.. automodule:: game.Path
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 game.board module
 -----------------
 
@@ -32,6 +24,14 @@ game.game module
 ----------------
 
 .. automodule:: game.game
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+game.path module
+----------------
+
+.. automodule:: game.path
    :members:
    :undoc-members:
    :show-inheritance:

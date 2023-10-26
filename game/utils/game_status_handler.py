@@ -1,6 +1,16 @@
+"""
+game_status_handler.py
+This module provides:
+- `create_new_arrangement(current_arrangement, figure_to_move, move)`: a method to create a new arrangement according
+   to the move
+- `GameStatusHandler`: a class to process legality of moves and arrangements in the game
+"""
+
+
 def create_new_arrangement(current_arrangement, figure_to_move, move):
     """
-    Converts the current arrangement of the board into a new one based on the figure being moved and the move performed.
+    Converts the current arrangement of the board into a new one based on the figure being moved and
+    the move performed.
 
     Args:
         current_arrangement (set[Figures]): The current arrangement of the board.
@@ -48,6 +58,8 @@ class GameStatusHandler:
             if figure.is_king and figure.color == given_side:
                 return figure.x, figure.y
 
+        raise RuntimeError("There is no king of the given color on the board")
+
     def find_king(self, given_side):
         """
         Finds the King of a given color.
@@ -61,6 +73,8 @@ class GameStatusHandler:
         for figure in self.figures:
             if figure.is_king and figure.color == given_side:
                 return figure
+
+        raise RuntimeError("There is no king of the given color on the board")
 
     def is_any_figure_in_coords(self, coords):
         """

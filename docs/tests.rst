@@ -4,34 +4,34 @@ tests package
 Submodules
 ----------
 
-tests.CheckTest module
+tests.testCheck module
 ----------------------
 
-.. automodule:: tests.CheckTest
+.. automodule:: tests.testCheck
    :members:
    :undoc-members:
    :show-inheritance:
 
-tests.LegalaMoveTest module
+tests.testLegalMoves module
 ---------------------------
 
-.. automodule:: tests.LegalaMoveTest
+.. automodule:: tests.testLegalMoves
    :members:
    :undoc-members:
    :show-inheritance:
 
-tests.MateTest module
+tests.testMate module
 ---------------------
 
-.. automodule:: tests.MateTest
+.. automodule:: tests.testMate
    :members:
    :undoc-members:
    :show-inheritance:
 
-tests.StalemateTests module
----------------------------
+tests.testStalemate module
+--------------------------
 
-.. automodule:: tests.StalemateTests
+.. automodule:: tests.testStalemate
    :members:
    :undoc-members:
    :show-inheritance:
