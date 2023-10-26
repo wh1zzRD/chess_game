@@ -19,7 +19,6 @@ jobs:
           pwd
           ls
           pip install -r requirements.txt
-          shell: bash
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v2
