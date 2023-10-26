@@ -30,8 +30,7 @@ class Game:
         self.board = Board(self)
 
         self.turn = 1
-        # self.figures = FenConverter.fen_converter(self, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR")
-        self.figures = FenConverter.fen_converter(self, "4K3/2R5/7B/8/8/8/8/3k4")
+        self.figures = FenConverter.fen_converter(self, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR")
 
     def run(self):
         """Starts and runs the game."""
