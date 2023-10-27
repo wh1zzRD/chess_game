@@ -103,7 +103,6 @@ class Figure:
             bool: True if move was possible (legal) and the figure was moved and False is not
         """
         mouse_coordinates = (mouse_x, mouse_y)
-
         if mouse_coordinates in self.get_legal_moves():
             figure_in_coords = self.game.get_figure_in_coords(mouse_coordinates)
             if figure_in_coords:
@@ -116,6 +115,8 @@ class Figure:
             self.game.turn = not self.color
             self.deselect()
             self.game.selected_figure = None
+
+            self.game.en_passant = None
 
     def draw_possible_moves(self):
         """Draws the possible moves of the figure as circles in the respective coordinates."""

@@ -32,6 +32,8 @@ class Game:
         self.turn = 1
         self.figures = FenConverter.fen_converter(self, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR")
 
+        self.en_passant = None
+
     def run(self):
         """Starts and runs the game."""
         while self.keep_doing:
@@ -74,7 +76,8 @@ class Game:
             mouse_x, mouse_y = self.board.convert_mouse_coordinates_to_board_coordinates(pygame.mouse.get_pos())
             self.figure_selection_events(mouse_x, mouse_y)
             if self.selected_figure is not None:
-                self.selected_figure.move(mouse_x, mouse_y)
+                if (mouse_x, mouse_y) != (self.selected_figure.x, self.selected_figure.y):
+                    self.selected_figure.move(mouse_x, mouse_y)
 
     def figure_selection_events(self, mouse_x, mouse_y):
         """

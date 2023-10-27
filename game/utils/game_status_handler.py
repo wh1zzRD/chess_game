@@ -2,7 +2,7 @@
 game_status_handler.py
 This module provides:
 - `create_new_arrangement(current_arrangement, figure_to_move, move)`: a method to create a new arrangement according
-   to the move
+to the move
 - `GameStatusHandler`: a class to process legality of moves and arrangements in the game
 """
 
