@@ -63,10 +63,10 @@ class Figure:
         self.color = color  # 1 white  0 black
         self.is_selected = False
         if color:
-            self.image = pygame.transform.rotozoom(self.picture_white, 0, 0.4)
+            self.image = pygame.transform.rotozoom(self.picture_white, 0, 1.6)
             self.factor = 1
         else:
-            self.image = pygame.transform.rotozoom(self.picture_black, 0, 0.4)
+            self.image = pygame.transform.rotozoom(self.picture_black, 0, 1.6)
             self.factor = -1
 
     def __repr__(self):
@@ -87,9 +87,9 @@ class Figure:
         """Makes the image of the figure normal, when it's deselected."""
         self.is_selected = False
         if self.color:
-            self.image = pygame.transform.rotozoom(self.picture_white, 0, 0.4)
+            self.image = pygame.transform.rotozoom(self.picture_white, 0, 1.6)
         else:
-            self.image = pygame.transform.rotozoom(self.picture_black, 0, 0.4)
+            self.image = pygame.transform.rotozoom(self.picture_black, 0, 1.6)
 
     def move(self, mouse_x, mouse_y):
         """

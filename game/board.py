@@ -20,9 +20,6 @@ class Board:
             game (Game): game that is being drawn and displayed
         """
 
-        # pylint: disable=too-many-instance-attributes
-        # Ten is reasonable in this case.
-
         self.game = game
 
         self.width, self.height = 870, 870
@@ -32,9 +29,9 @@ class Board:
         self.field_side = 100
         self.coordinates_width = 35
 
-        self.brown_color = (97, 53, 7)
-        self.beige_color = (218, 163, 120)
-        self.green_color = (120, 218, 127)
+        self.dark_color = (111, 143, 114)
+        self.light_color = (173, 189, 143)
+        self.text_color = (120, 218, 127)
 
     def draw(self):
         """
@@ -50,14 +47,14 @@ class Board:
         """
         Draws the squares of the board.
         """
-        self.display.fill(self.brown_color)
+        self.display.fill(self.dark_color)
         x_field_position = self.coordinates_width
         y_field_position = self.coordinates_width
 
         for _ in range(32):
             pygame.draw.rect(
                 self.display,
-                self.beige_color,
+                self.light_color,
                 pygame.Rect(x_field_position, y_field_position, self.field_side, self.field_side)
             )
 
@@ -81,7 +78,7 @@ class Board:
         for number in range(ord("1"), ord("1") + 8):
             if y_pos == 830:
                 y_pos = 30
-            letter = self.font.render(chr(number), True, self.beige_color)
+            letter = self.font.render(chr(number), True, self.light_color)
             self.display.blit(letter, (845, y_pos))
             self.display.blit(letter, (10, y_pos))
             y_pos += 100
@@ -90,7 +87,7 @@ class Board:
         for symbol in range(ord("A"), ord("A") + 8):
             if x_pos == 840:
                 x_pos = 40
-            num = self.font.render(chr(symbol), True, self.beige_color)
+            num = self.font.render(chr(symbol), True, self.light_color)
             self.display.blit(num, (x_pos, 830))
             self.display.blit(num, (x_pos, -5))
             x_pos += 100
@@ -116,7 +113,7 @@ class Board:
         Args:
             result (str): text to be displayed
         """
-        result_image = self.font.render("Result: " + str(result), True, self.green_color)
+        result_image = self.font.render("Result: " + str(result), True, self.text_color)
         self.display.blit(result_image, (300, 400))
         pygame.display.update()
         time.sleep(3)
