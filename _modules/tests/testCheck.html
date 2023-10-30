@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tests.testCheck &mdash; PyChess 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PyChess
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">chess_game</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyChess</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tests.testCheck</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for tests.testCheck</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="kn">from</span> <span class="nn">game.utils.game_status_handler</span> <span class="kn">import</span> <span class="n">GameStatusHandler</span>
+<span class="kn">from</span> <span class="nn">game.utils.fen</span> <span class="kn">import</span> <span class="n">FenConverter</span>
+<span class="kn">from</span> <span class="nn">game.game</span> <span class="kn">import</span> <span class="n">Game</span>
+
+
+<div class="viewcode-block" id="CheckTest">
+<a class="viewcode-back" href="../../tests.html#tests.testCheck.CheckTest">[docs]</a>
+<span class="k">class</span> <span class="nc">CheckTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="CheckTest.setUp">
+<a class="viewcode-back" href="../../tests.html#tests.testCheck.CheckTest.setUp">[docs]</a>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># source_folder = r&quot;E:/chess_game/img/&quot;</span>
+        <span class="c1"># destination_folder = r&quot;E:/chess_game/tests/img/&quot;</span>
+        <span class="c1">#</span>
+        <span class="c1"># if not os.path.exists(destination_folder):</span>
+        <span class="c1">#     os.makedirs(destination_folder)</span>
+        <span class="c1">#</span>
+        <span class="c1"># # fetch all files</span>
+        <span class="c1"># for file_name in os.listdir(source_folder):</span>
+        <span class="c1">#     # construct full file path</span>
+        <span class="c1">#     source = source_folder + file_name</span>
+        <span class="c1">#     destination = destination_folder + file_name</span>
+        <span class="c1">#     # copy only files</span>
+        <span class="c1">#     if os.path.isfile(source):</span>
+        <span class="c1">#         shutil.copy(source, destination)</span>
+        <span class="k">pass</span></div>
+
+        <span class="c1"># TODO add setUp and tearDown</span>
+
+<div class="viewcode-block" id="CheckTest.tearDown">
+<a class="viewcode-back" href="../../tests.html#tests.testCheck.CheckTest.tearDown">[docs]</a>
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># shutil.rmtree(r&quot;E:/chess_game/tests/img/&quot;)</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="CheckTest.test_one">
+<a class="viewcode-back" href="../../tests.html#tests.testCheck.CheckTest.test_one">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_one</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">game</span> <span class="o">=</span> <span class="n">Game</span><span class="p">()</span>
+        <span class="n">arrangement</span> <span class="o">=</span> <span class="n">FenConverter</span><span class="o">.</span><span class="n">fen_converter</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="s2">&quot;3rr3/8/8/7k/3K4/8/8/8&quot;</span><span class="p">)</span>
+        <span class="n">util</span> <span class="o">=</span> <span class="n">GameStatusHandler</span><span class="p">(</span><span class="n">arrangement</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">is_check</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CheckTest.test_two">
+<a class="viewcode-back" href="../../tests.html#tests.testCheck.CheckTest.test_two">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_two</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">game</span> <span class="o">=</span> <span class="n">Game</span><span class="p">()</span>
+        <span class="n">arrangement</span> <span class="o">=</span> <span class="n">FenConverter</span><span class="o">.</span><span class="n">fen_converter</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="s2">&quot;3rr3/8/8/7k/3K4/8/8/3Q4&quot;</span><span class="p">)</span>
+        <span class="n">util</span> <span class="o">=</span> <span class="n">GameStatusHandler</span><span class="p">(</span><span class="n">arrangement</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">is_check</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CheckTest.test_three">
+<a class="viewcode-back" href="../../tests.html#tests.testCheck.CheckTest.test_three">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_three</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">game</span> <span class="o">=</span> <span class="n">Game</span><span class="p">()</span>
+        <span class="n">arrangement</span> <span class="o">=</span> <span class="n">FenConverter</span><span class="o">.</span><span class="n">fen_converter</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="s2">&quot;4K3/8/8/8/8/8/8/3k4&quot;</span><span class="p">)</span>
+        <span class="n">util</span> <span class="o">=</span> <span class="n">GameStatusHandler</span><span class="p">(</span><span class="n">arrangement</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">is_check</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CheckTest.test_four">
+<a class="viewcode-back" href="../../tests.html#tests.testCheck.CheckTest.test_four">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_four</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">game</span> <span class="o">=</span> <span class="n">Game</span><span class="p">()</span>
+        <span class="n">arrangement</span> <span class="o">=</span> <span class="n">FenConverter</span><span class="o">.</span><span class="n">fen_converter</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="s2">&quot;4K3/3R4/8/7B/8/8/8/3k4&quot;</span><span class="p">)</span>
+        <span class="n">util</span> <span class="o">=</span> <span class="n">GameStatusHandler</span><span class="p">(</span><span class="n">arrangement</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">is_check</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CheckTest.test_five">
+<a class="viewcode-back" href="../../tests.html#tests.testCheck.CheckTest.test_five">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_five</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">game</span> <span class="o">=</span> <span class="n">Game</span><span class="p">()</span>
+        <span class="n">arrangement</span> <span class="o">=</span> <span class="n">FenConverter</span><span class="o">.</span><span class="n">fen_converter</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="s2">&quot;4K3/2R5/7B/8/8/8/8/3k4&quot;</span><span class="p">)</span>
+        <span class="n">util</span> <span class="o">=</span> <span class="n">GameStatusHandler</span><span class="p">(</span><span class="n">arrangement</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">is_check</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Tim Seleznev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

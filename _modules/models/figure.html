@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>models.figure &mdash; PyChess 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PyChess
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">chess_game</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyChess</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">models.figure</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for models.figure</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">figure.py</span>
+<span class="sd">This module provides:</span>
+<span class="sd">- `Figure`: a parent class for all the pieces in the game.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">pygame</span>
+
+<span class="kn">from</span> <span class="nn">game.utils.game_status_handler</span> <span class="kn">import</span> <span class="n">GameStatusHandler</span>
+
+
+<div class="viewcode-block" id="Figure">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure">[docs]</a>
+<span class="k">class</span> <span class="nc">Figure</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class that describes a generic piece. The attributes are coordinates, color and the game.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">picture_white</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the picture of the white figure associated with this object.</span>
+
+<span class="sd">        This property is intended to be implemented in subclasses.</span>
+<span class="sd">        Subclasses should provide the black picture by loading it from img folder.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            NotImplementedError: This property is not implemented in the base class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">picture_black</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the picture of the black figure associated with this object.</span>
+
+<span class="sd">        This property is intended to be implemented in subclasses.</span>
+<span class="sd">        Subclasses should provide the black picture by loading it from img folder.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            NotImplementedError: This property is not implemented in the base class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_king</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Whether the figure is a King or not. This method should be overwritten in class King.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if that is the case, False if not</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            game (Game): game object</span>
+<span class="sd">            x (int): x coordinate of the figure</span>
+<span class="sd">            y (int): y coordinate of the figure</span>
+<span class="sd">            color (int): side / color of the figure</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">game</span> <span class="o">=</span> <span class="n">game</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>  <span class="c1"># 1 white  0 black</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_selected</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">been_moved</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">color</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">rotozoom</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">picture_white</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">rotozoom</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">picture_black</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+<div class="viewcode-block" id="Figure.draw">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.draw">[docs]</a>
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Draws the figure on the screen in its coordinates.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">35</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">35</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Figure.select">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.select">[docs]</a>
+    <span class="k">def</span> <span class="nf">select</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes the image of the figure bigger, when it&#39;s selected.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_selected</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_selected</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">rotozoom</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Figure.deselect">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.deselect">[docs]</a>
+    <span class="k">def</span> <span class="nf">deselect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes the image of the figure normal, when it&#39;s deselected.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_selected</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">rotozoom</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">picture_white</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">rotozoom</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">picture_black</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Figure.move">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.move">[docs]</a>
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mouse_x</span><span class="p">,</span> <span class="n">mouse_y</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Moves the figure to the given coordinates if it is possible.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            mouse_x (int): x coordinate of the field, where the player tries to move the figure</span>
+<span class="sd">            mouse_y (int): y coordinate of the field, where the player tries to move the figure</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if move was possible (legal) and the figure was moved and False is not</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mouse_coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="n">mouse_x</span><span class="p">,</span> <span class="n">mouse_y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mouse_coordinates</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_legal_moves</span><span class="p">():</span>
+            <span class="n">figure_in_coords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">get_figure_in_coords</span><span class="p">(</span><span class="n">mouse_coordinates</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">figure_in_coords</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">figure</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">figures</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">figure</span> <span class="o">==</span> <span class="n">figure_in_coords</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">figures</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">figure_in_coords</span><span class="p">)</span>
+                        <span class="k">break</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">mouse_coordinates</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">been_moved</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">been_moved</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">turn</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">deselect</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">selected_figure</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">en_passant</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="Figure.draw_possible_moves">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.draw_possible_moves">[docs]</a>
+    <span class="k">def</span> <span class="nf">draw_possible_moves</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Draws the possible moves of the figure as circles in the respective coordinates.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">move</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_legal_moves</span><span class="p">():</span>
+            <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">display</span><span class="p">,</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="n">move</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">85</span><span class="p">,</span> <span class="n">move</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">85</span><span class="p">),</span> <span class="mi">20</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Figure.calculate_moves">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.calculate_moves">[docs]</a>
+    <span class="k">def</span> <span class="nf">calculate_moves</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates all possible moves of the figure, ignoring its legality and other figures. Only considers the</span>
+<span class="sd">        edges of the board or specific rules on how the figure can move (e.g. King, Pawn, knight).</span>
+<span class="sd">        This method should be overwritten for each subclass of Figure, since all figures move differently.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple(int, int)]: possible moves</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;This method should be implemented in child classes&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Figure.get_all_moves">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.get_all_moves">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_all_moves</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If the path to the move is blocked by a different figure, that move and all the next moves on the same path</span>
+<span class="sd">        are removed from possible moves. If the figure blocking the path is the figure of the opposing color, that move</span>
+<span class="sd">        is still added to the possible moves (representing capturing the figure), but all the following ones are not.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple(int, int)]: moves that are not blocked by other figures</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">possible_moves</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_moves</span><span class="p">()</span>
+        <span class="n">legal_moves</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">possible_moves</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">move</span> <span class="ow">in</span> <span class="n">direction</span><span class="p">:</span>
+                <span class="n">is_figure_in_way</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">get_figure_in_coords</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">is_figure_in_way</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">is_figure_in_way</span><span class="o">.</span><span class="n">color</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">:</span>
+                        <span class="n">legal_moves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+                    <span class="k">break</span>
+                <span class="n">legal_moves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">legal_moves</span></div>
+
+
+<div class="viewcode-block" id="Figure.get_legal_moves">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.get_legal_moves">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_legal_moves</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If the move is not legal, or rather will put you in check, such move is not added to legal moves.</span>
+<span class="sd">        Also add castling moves to the possible moves if self is the king and castling is possible.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple(int, int)]: list with legal moves</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">possible_moves</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_moves</span><span class="p">()</span>
+        <span class="n">legal_moves</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">move</span> <span class="ow">in</span> <span class="n">possible_moves</span><span class="p">:</span>
+            <span class="n">current_arrangement</span> <span class="o">=</span> <span class="n">GameStatusHandler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">figures</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">current_arrangement</span><span class="o">.</span><span class="n">is_move_legal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">move</span><span class="p">):</span>
+                <span class="n">legal_moves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_king</span><span class="p">:</span>
+            <span class="n">arrangement</span> <span class="o">=</span> <span class="n">GameStatusHandler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">game</span><span class="o">.</span><span class="n">figures</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">arrangement</span><span class="o">.</span><span class="n">is_short_castle_possible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">legal_moves</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">legal_moves</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">arrangement</span><span class="o">.</span><span class="n">is_long_castle_possible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">legal_moves</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">legal_moves</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">legal_moves</span></div>
+
+
+<div class="viewcode-block" id="Figure.moves_right">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.moves_right">[docs]</a>
+    <span class="k">def</span> <span class="nf">moves_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the possible moves of the figure from current position to the right end of the board (horizontally)</span>
+<span class="sd">        (ignoring the pieces). Only considers the edges of the board.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple(int, int)]: possible moves</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">possible_moves</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">temp_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">temp_x</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="n">possible_moves</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">temp_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+            <span class="n">temp_x</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">possible_moves</span></div>
+
+
+<div class="viewcode-block" id="Figure.moves_left">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.moves_left">[docs]</a>
+    <span class="k">def</span> <span class="nf">moves_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the possible moves of the figure from current position to the left end of the board (horizontally)</span>
+<span class="sd">        (ignoring the pieces). Only considers the edges of the board.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple(int, int)]: possible moves</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">possible_moves</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">temp_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">temp_x</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">possible_moves</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">temp_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+            <span class="n">temp_x</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">possible_moves</span></div>
+
+
+<div class="viewcode-block" id="Figure.moves_up">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.moves_up">[docs]</a>
+    <span class="k">def</span> <span class="nf">moves_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the possible moves of the figure from current position to the top end of the board (vertically)</span>
+<span class="sd">        (ignoring the pieces). Only considers the edges of the board.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple(int, int)]: possible moves</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">possible_moves</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">temp_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">temp_y</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">possible_moves</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">temp_y</span><span class="p">))</span>
+            <span class="n">temp_y</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">possible_moves</span></div>
+
+
+<div class="viewcode-block" id="Figure.moves_down">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.moves_down">[docs]</a>
+    <span class="k">def</span> <span class="nf">moves_down</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the possible moves of the figure from current position to the bottom end of the board (vertically)</span>
+<span class="sd">        (ignoring the pieces). Only considers the edges of the board.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple(int, int)]: possible moves</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">possible_moves</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">temp_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">temp_y</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="n">possible_moves</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">temp_y</span><span class="p">))</span>
+            <span class="n">temp_y</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">possible_moves</span></div>
+
+
+<div class="viewcode-block" id="Figure.moves_up_right">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.moves_up_right">[docs]</a>
+    <span class="k">def</span> <span class="nf">moves_up_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the possible moves of the figure from current position going up and right (diagonally)</span>
+<span class="sd">        (ignoring the pieces). Only considers the edges of the board.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple(int, int)]: possible moves</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">possible_moves</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">temp_x</span><span class="p">,</span> <span class="n">temp_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">temp_x</span> <span class="o">&lt;=</span> <span class="mi">7</span> <span class="ow">and</span> <span class="n">temp_y</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">possible_moves</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">temp_x</span><span class="p">,</span> <span class="n">temp_y</span><span class="p">))</span>
+            <span class="n">temp_x</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">temp_y</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">possible_moves</span></div>
+
+
+<div class="viewcode-block" id="Figure.moves_up_left">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.moves_up_left">[docs]</a>
+    <span class="k">def</span> <span class="nf">moves_up_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the possible moves of the figure from current position going up and left (diagonally)</span>
+<span class="sd">        (ignoring the pieces). Only considers the edges of the board.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple(int, int)]: possible moves</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">possible_moves</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">temp_x</span><span class="p">,</span> <span class="n">temp_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">temp_x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">temp_y</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">possible_moves</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">temp_x</span><span class="p">,</span> <span class="n">temp_y</span><span class="p">))</span>
+            <span class="n">temp_x</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">temp_y</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">possible_moves</span></div>
+
+
+<div class="viewcode-block" id="Figure.moves_down_right">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.moves_down_right">[docs]</a>
+    <span class="k">def</span> <span class="nf">moves_down_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the possible moves of the figure from current position going down and right (diagonally)</span>
+<span class="sd">        (ignoring the pieces). Only considers the edges of the board.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple(int, int)]: possible moves</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">possible_moves</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">temp_x</span><span class="p">,</span> <span class="n">temp_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">temp_x</span> <span class="o">&lt;=</span> <span class="mi">7</span> <span class="ow">and</span> <span class="n">temp_y</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="n">possible_moves</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">temp_x</span><span class="p">,</span> <span class="n">temp_y</span><span class="p">))</span>
+            <span class="n">temp_x</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">temp_y</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">possible_moves</span></div>
+
+
+<div class="viewcode-block" id="Figure.moves_down_left">
+<a class="viewcode-back" href="../../models.html#models.figure.Figure.moves_down_left">[docs]</a>
+    <span class="k">def</span> <span class="nf">moves_down_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the possible moves of the figure from current position going down and left (diagonally)</span>
+<span class="sd">        (ignoring the pieces). Only considers the edges of the board.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple(int, int)]: possible moves</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">possible_moves</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">temp_x</span><span class="p">,</span> <span class="n">temp_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">temp_x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">temp_y</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="n">possible_moves</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">temp_x</span><span class="p">,</span> <span class="n">temp_y</span><span class="p">))</span>
+            <span class="n">temp_x</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">temp_y</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">possible_moves</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Tim Seleznev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

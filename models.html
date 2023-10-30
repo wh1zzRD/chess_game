@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>models package &mdash; PyChess 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tests package" href="tests.html" />
+    <link rel="prev" title="main module" href="main.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PyChess
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">chess_game</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="game.html">game package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">models package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-models.bishop">models.bishop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#models.bishop.Bishop"><code class="docutils literal notranslate"><span class="pre">Bishop</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-models.figure">models.figure module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#models.figure.Figure"><code class="docutils literal notranslate"><span class="pre">Figure</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-models.king">models.king module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#models.king.King"><code class="docutils literal notranslate"><span class="pre">King</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-models.knight">models.knight module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#models.knight.Knight"><code class="docutils literal notranslate"><span class="pre">Knight</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-models.pawn">models.pawn module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#models.pawn.Pawn"><code class="docutils literal notranslate"><span class="pre">Pawn</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-models.queen">models.queen module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#models.queen.Queen"><code class="docutils literal notranslate"><span class="pre">Queen</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-models.rook">models.rook module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#models.rook.Rook"><code class="docutils literal notranslate"><span class="pre">Rook</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyChess</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">chess_game</a></li>
+      <li class="breadcrumb-item active">models package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="models-package">
+<h1>models package<a class="headerlink" href="#models-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-models.bishop">
+<span id="models-bishop-module"></span><h2>models.bishop module<a class="headerlink" href="#module-models.bishop" title="Link to this heading"></a></h2>
+<p>bishop.py
+This module provides:
+- <cite>Bishop(Figure)</cite>: a class to specifically represent a bishop in the game.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="models.bishop.Bishop">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">models.bishop.</span></span><span class="sig-name descname"><span class="pre">Bishop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/bishop.html#Bishop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.bishop.Bishop" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#models.figure.Figure" title="models.figure.Figure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
+<p>This class represents a bishop. calculate_moves() is overwritten according to how a bishop moves.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="models.bishop.Bishop.calculate_moves">
+<span class="sig-name descname"><span class="pre">calculate_moves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/bishop.html#Bishop.calculate_moves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.bishop.Bishop.calculate_moves" title="Link to this definition"></a></dt>
+<dd><p>Calculates all possible moves of the figure, ignoring its legality and other figures. Only considers the
+edges of the board or specific rules on how the figure can move (e.g. King, Pawn, knight).
+This method should be overwritten for each subclass of Figure, since all figures move differently.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.bishop.Bishop.picture_black">
+<span class="sig-name descname"><span class="pre">picture_black</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Surface(60x60x32</span> <span class="pre">SW)&gt;</span></em><a class="headerlink" href="#models.bishop.Bishop.picture_black" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.bishop.Bishop.picture_white">
+<span class="sig-name descname"><span class="pre">picture_white</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Surface(60x60x32</span> <span class="pre">SW)&gt;</span></em><a class="headerlink" href="#models.bishop.Bishop.picture_white" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-models.figure">
+<span id="models-figure-module"></span><h2>models.figure module<a class="headerlink" href="#module-models.figure" title="Link to this heading"></a></h2>
+<p>figure.py
+This module provides:
+- <cite>Figure</cite>: a parent class for all the pieces in the game.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="models.figure.Figure">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">models.figure.</span></span><span class="sig-name descname"><span class="pre">Figure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class that describes a generic piece. The attributes are coordinates, color and the game.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.calculate_moves">
+<span class="sig-name descname"><span class="pre">calculate_moves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.calculate_moves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.calculate_moves" title="Link to this definition"></a></dt>
+<dd><p>Calculates all possible moves of the figure, ignoring its legality and other figures. Only considers the
+edges of the board or specific rules on how the figure can move (e.g. King, Pawn, knight).
+This method should be overwritten for each subclass of Figure, since all figures move differently.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.deselect">
+<span class="sig-name descname"><span class="pre">deselect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.deselect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.deselect" title="Link to this definition"></a></dt>
+<dd><p>Makes the image of the figure normal, when it’s deselected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.draw" title="Link to this definition"></a></dt>
+<dd><p>Draws the figure on the screen in its coordinates.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.draw_possible_moves">
+<span class="sig-name descname"><span class="pre">draw_possible_moves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.draw_possible_moves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.draw_possible_moves" title="Link to this definition"></a></dt>
+<dd><p>Draws the possible moves of the figure as circles in the respective coordinates.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.get_all_moves">
+<span class="sig-name descname"><span class="pre">get_all_moves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.get_all_moves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.get_all_moves" title="Link to this definition"></a></dt>
+<dd><p>If the path to the move is blocked by a different figure, that move and all the next moves on the same path
+are removed from possible moves. If the figure blocking the path is the figure of the opposing color, that move
+is still added to the possible moves (representing capturing the figure), but all the following ones are not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>moves that are not blocked by other figures</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.get_legal_moves">
+<span class="sig-name descname"><span class="pre">get_legal_moves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.get_legal_moves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.get_legal_moves" title="Link to this definition"></a></dt>
+<dd><p>If the move is not legal, or rather will put you in check, such move is not added to legal moves.
+Also add castling moves to the possible moves if self is the king and castling is possible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list with legal moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="models.figure.Figure.is_king">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_king</span></span><a class="headerlink" href="#models.figure.Figure.is_king" title="Link to this definition"></a></dt>
+<dd><p>Whether the figure is a King or not. This method should be overwritten in class King.
+:returns: True if that is the case, False if not
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mouse_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouse_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.move" title="Link to this definition"></a></dt>
+<dd><p>Moves the figure to the given coordinates if it is possible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mouse_x</strong> (<em>int</em>) – x coordinate of the field, where the player tries to move the figure</p></li>
+<li><p><strong>mouse_y</strong> (<em>int</em>) – y coordinate of the field, where the player tries to move the figure</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if move was possible (legal) and the figure was moved and False is not</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.moves_down">
+<span class="sig-name descname"><span class="pre">moves_down</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.moves_down"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.moves_down" title="Link to this definition"></a></dt>
+<dd><p>Calculates the possible moves of the figure from current position to the bottom end of the board (vertically)
+(ignoring the pieces). Only considers the edges of the board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.moves_down_left">
+<span class="sig-name descname"><span class="pre">moves_down_left</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.moves_down_left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.moves_down_left" title="Link to this definition"></a></dt>
+<dd><p>Calculates the possible moves of the figure from current position going down and left (diagonally)
+(ignoring the pieces). Only considers the edges of the board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.moves_down_right">
+<span class="sig-name descname"><span class="pre">moves_down_right</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.moves_down_right"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.moves_down_right" title="Link to this definition"></a></dt>
+<dd><p>Calculates the possible moves of the figure from current position going down and right (diagonally)
+(ignoring the pieces). Only considers the edges of the board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.moves_left">
+<span class="sig-name descname"><span class="pre">moves_left</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.moves_left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.moves_left" title="Link to this definition"></a></dt>
+<dd><p>Calculates the possible moves of the figure from current position to the left end of the board (horizontally)
+(ignoring the pieces). Only considers the edges of the board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.moves_right">
+<span class="sig-name descname"><span class="pre">moves_right</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.moves_right"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.moves_right" title="Link to this definition"></a></dt>
+<dd><p>Calculates the possible moves of the figure from current position to the right end of the board (horizontally)
+(ignoring the pieces). Only considers the edges of the board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.moves_up">
+<span class="sig-name descname"><span class="pre">moves_up</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.moves_up"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.moves_up" title="Link to this definition"></a></dt>
+<dd><p>Calculates the possible moves of the figure from current position to the top end of the board (vertically)
+(ignoring the pieces). Only considers the edges of the board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.moves_up_left">
+<span class="sig-name descname"><span class="pre">moves_up_left</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.moves_up_left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.moves_up_left" title="Link to this definition"></a></dt>
+<dd><p>Calculates the possible moves of the figure from current position going up and left (diagonally)
+(ignoring the pieces). Only considers the edges of the board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.moves_up_right">
+<span class="sig-name descname"><span class="pre">moves_up_right</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.moves_up_right"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.moves_up_right" title="Link to this definition"></a></dt>
+<dd><p>Calculates the possible moves of the figure from current position going up and right (diagonally)
+(ignoring the pieces). Only considers the edges of the board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="models.figure.Figure.picture_black">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">picture_black</span></span><a class="headerlink" href="#models.figure.Figure.picture_black" title="Link to this definition"></a></dt>
+<dd><p>Get the picture of the black figure associated with this object.</p>
+<p>This property is intended to be implemented in subclasses.
+Subclasses should provide the black picture by loading it from img folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>NotImplementedError</strong> – This property is not implemented in the base class.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="models.figure.Figure.picture_white">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">picture_white</span></span><a class="headerlink" href="#models.figure.Figure.picture_white" title="Link to this definition"></a></dt>
+<dd><p>Get the picture of the white figure associated with this object.</p>
+<p>This property is intended to be implemented in subclasses.
+Subclasses should provide the black picture by loading it from img folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>NotImplementedError</strong> – This property is not implemented in the base class.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.figure.Figure.select">
+<span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/figure.html#Figure.select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.figure.Figure.select" title="Link to this definition"></a></dt>
+<dd><p>Makes the image of the figure bigger, when it’s selected.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-models.king">
+<span id="models-king-module"></span><h2>models.king module<a class="headerlink" href="#module-models.king" title="Link to this heading"></a></h2>
+<p>king.py
+This module provides:
+- <cite>King(Figure)</cite>: a class to specifically represent a king in the game.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="models.king.King">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">models.king.</span></span><span class="sig-name descname"><span class="pre">King</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/king.html#King"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.king.King" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#models.figure.Figure" title="models.figure.Figure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
+<p>This class represents a king. calculate_moves() is overwritten according to how a king moves.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="models.king.King.calculate_moves">
+<span class="sig-name descname"><span class="pre">calculate_moves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/king.html#King.calculate_moves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.king.King.calculate_moves" title="Link to this definition"></a></dt>
+<dd><p>Calculates all possible moves of the figure, ignoring its legality and other figures. Only considers the
+edges of the board or specific rules on how the figure can move (e.g. King, Pawn, knight).
+This method should be overwritten for each subclass of Figure, since all figures move differently.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.king.King.handle_post_castle_situation">
+<span class="sig-name descname"><span class="pre">handle_post_castle_situation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prev_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prev_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/king.html#King.handle_post_castle_situation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.king.King.handle_post_castle_situation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="models.king.King.is_king">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_king</span></span><a class="headerlink" href="#models.king.King.is_king" title="Link to this definition"></a></dt>
+<dd><p>This figure is a King
+:returns: True since this figure is the King
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.king.King.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mouse_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouse_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/king.html#King.move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.king.King.move" title="Link to this definition"></a></dt>
+<dd><p>Moves the figure to the given coordinates if it is possible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mouse_x</strong> (<em>int</em>) – x coordinate of the field, where the player tries to move the figure</p></li>
+<li><p><strong>mouse_y</strong> (<em>int</em>) – y coordinate of the field, where the player tries to move the figure</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if move was possible (legal) and the figure was moved and False is not</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.king.King.picture_black">
+<span class="sig-name descname"><span class="pre">picture_black</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Surface(60x60x32</span> <span class="pre">SW)&gt;</span></em><a class="headerlink" href="#models.king.King.picture_black" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.king.King.picture_white">
+<span class="sig-name descname"><span class="pre">picture_white</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Surface(60x60x32</span> <span class="pre">SW)&gt;</span></em><a class="headerlink" href="#models.king.King.picture_white" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-models.knight">
+<span id="models-knight-module"></span><h2>models.knight module<a class="headerlink" href="#module-models.knight" title="Link to this heading"></a></h2>
+<p>knight.py
+This module provides:
+- <cite>Knight(Figure)</cite>: a class to specifically represent a knight in the game.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="models.knight.Knight">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">models.knight.</span></span><span class="sig-name descname"><span class="pre">Knight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/knight.html#Knight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.knight.Knight" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#models.figure.Figure" title="models.figure.Figure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
+<p>This class represents a knight. calculate_moves() is overwritten according to how a knight moves.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="models.knight.Knight.calculate_moves">
+<span class="sig-name descname"><span class="pre">calculate_moves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/knight.html#Knight.calculate_moves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.knight.Knight.calculate_moves" title="Link to this definition"></a></dt>
+<dd><p>Calculates all possible moves of the figure, ignoring its legality and other figures. Only considers the
+edges of the board or specific rules on how the figure can move (e.g. King, Pawn, knight).
+This method should be overwritten for each subclass of Figure, since all figures move differently.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.knight.Knight.picture_black">
+<span class="sig-name descname"><span class="pre">picture_black</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Surface(60x60x32</span> <span class="pre">SW)&gt;</span></em><a class="headerlink" href="#models.knight.Knight.picture_black" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.knight.Knight.picture_white">
+<span class="sig-name descname"><span class="pre">picture_white</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Surface(60x60x32</span> <span class="pre">SW)&gt;</span></em><a class="headerlink" href="#models.knight.Knight.picture_white" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-models.pawn">
+<span id="models-pawn-module"></span><h2>models.pawn module<a class="headerlink" href="#module-models.pawn" title="Link to this heading"></a></h2>
+<p>pawn.py
+This module provides:
+- <cite>Pawn(Figure)</cite>: a class to specifically represent a pawn in the game.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="models.pawn.Pawn">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">models.pawn.</span></span><span class="sig-name descname"><span class="pre">Pawn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/pawn.html#Pawn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.pawn.Pawn" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#models.figure.Figure" title="models.figure.Figure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
+<p>This class represents a pawn. calculate_moves() is overwritten according to how a pawn moves.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="models.pawn.Pawn.basic_move">
+<span class="sig-name descname"><span class="pre">basic_move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/pawn.html#Pawn.basic_move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.pawn.Pawn.basic_move" title="Link to this definition"></a></dt>
+<dd><p>Calculates the basic moves of a pawn. Either just one square, or if the pawn is on the starting rank
+also two squares to the front.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves forward</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[list[tuple(int, int)]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.pawn.Pawn.calculate_en_passant">
+<span class="sig-name descname"><span class="pre">calculate_en_passant</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/pawn.html#Pawn.calculate_en_passant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.pawn.Pawn.calculate_en_passant" title="Link to this definition"></a></dt>
+<dd><p>Calculates whether there is a possibility for en passant for this pawn right now.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>en passant moves to take other pawns</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[list[tuple(int, int)]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.pawn.Pawn.calculate_moves">
+<span class="sig-name descname"><span class="pre">calculate_moves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/pawn.html#Pawn.calculate_moves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.pawn.Pawn.calculate_moves" title="Link to this definition"></a></dt>
+<dd><p>Calculates all possible moves of the figure, ignoring its legality and other figures. Only considers the
+edges of the board or specific rules on how the figure can move (e.g. King, Pawn, knight).
+This method should be overwritten for each subclass of Figure, since all figures move differently.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.pawn.Pawn.diagonal_take">
+<span class="sig-name descname"><span class="pre">diagonal_take</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/pawn.html#Pawn.diagonal_take"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.pawn.Pawn.diagonal_take" title="Link to this definition"></a></dt>
+<dd><p>If there is a piece of the opposing color diagonally from a pawn that this move is added to
+possible moves.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves diagonally</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[list[tuple(int, int)]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.pawn.Pawn.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mouse_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouse_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/pawn.html#Pawn.move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.pawn.Pawn.move" title="Link to this definition"></a></dt>
+<dd><p>Moves the figure to the given coordinates if it is possible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mouse_x</strong> (<em>int</em>) – x coordinate of the field, where the player tries to move the figure</p></li>
+<li><p><strong>mouse_y</strong> (<em>int</em>) – y coordinate of the field, where the player tries to move the figure</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if move was possible (legal) and the figure was moved and False is not</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.pawn.Pawn.pawn_to_queen">
+<span class="sig-name descname"><span class="pre">pawn_to_queen</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/pawn.html#Pawn.pawn_to_queen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.pawn.Pawn.pawn_to_queen" title="Link to this definition"></a></dt>
+<dd><p>Replaces the object of the pawn with the object of a Queen in the same coordinates.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.pawn.Pawn.picture_black">
+<span class="sig-name descname"><span class="pre">picture_black</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Surface(60x60x32</span> <span class="pre">SW)&gt;</span></em><a class="headerlink" href="#models.pawn.Pawn.picture_black" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.pawn.Pawn.picture_white">
+<span class="sig-name descname"><span class="pre">picture_white</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Surface(60x60x32</span> <span class="pre">SW)&gt;</span></em><a class="headerlink" href="#models.pawn.Pawn.picture_white" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.pawn.Pawn.remove_figure_after_en_passant">
+<span class="sig-name descname"><span class="pre">remove_figure_after_en_passant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prev_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prev_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/pawn.html#Pawn.remove_figure_after_en_passant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.pawn.Pawn.remove_figure_after_en_passant" title="Link to this definition"></a></dt>
+<dd><p>If this pawn has been moved in the en passant shape (1 forward and 1 to the side) a piece has to be removed
+since en passant always is a take.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prev_x</strong> (<em>int</em>) – previous x position of this pawn</p></li>
+<li><p><strong>prev_y</strong> (<em>int</em>) – previous y position of this pawn</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.pawn.Pawn.set_en_passant">
+<span class="sig-name descname"><span class="pre">set_en_passant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prev_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/pawn.html#Pawn.set_en_passant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.pawn.Pawn.set_en_passant" title="Link to this definition"></a></dt>
+<dd><p>If the pawn has been moved two squares to the front, the en passant flag of the game is set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>prev_y</strong> (<em>int</em>) – previous y position of this pawn</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-models.queen">
+<span id="models-queen-module"></span><h2>models.queen module<a class="headerlink" href="#module-models.queen" title="Link to this heading"></a></h2>
+<p>queen.py
+This module provides:
+- <cite>Bishop(Figure)</cite>: a class to specifically represent a queen in the game.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="models.queen.Queen">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">models.queen.</span></span><span class="sig-name descname"><span class="pre">Queen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/queen.html#Queen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.queen.Queen" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#models.figure.Figure" title="models.figure.Figure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
+<p>This class represents a queen. calculate_moves() is overwritten according to how a queen moves.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="models.queen.Queen.calculate_moves">
+<span class="sig-name descname"><span class="pre">calculate_moves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/queen.html#Queen.calculate_moves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.queen.Queen.calculate_moves" title="Link to this definition"></a></dt>
+<dd><p>Calculates all possible moves of the figure, ignoring its legality and other figures. Only considers the
+edges of the board or specific rules on how the figure can move (e.g. King, Pawn, knight).
+This method should be overwritten for each subclass of Figure, since all figures move differently.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.queen.Queen.picture_black">
+<span class="sig-name descname"><span class="pre">picture_black</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Surface(60x60x32</span> <span class="pre">SW)&gt;</span></em><a class="headerlink" href="#models.queen.Queen.picture_black" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.queen.Queen.picture_white">
+<span class="sig-name descname"><span class="pre">picture_white</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Surface(60x60x32</span> <span class="pre">SW)&gt;</span></em><a class="headerlink" href="#models.queen.Queen.picture_white" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-models.rook">
+<span id="models-rook-module"></span><h2>models.rook module<a class="headerlink" href="#module-models.rook" title="Link to this heading"></a></h2>
+<p>rook.py
+This module provides:
+- <cite>Rook(Figure)</cite>: a class to specifically represent a rook in the game.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="models.rook.Rook">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">models.rook.</span></span><span class="sig-name descname"><span class="pre">Rook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rook.html#Rook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.rook.Rook" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#models.figure.Figure" title="models.figure.Figure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></p>
+<p>This class represents a rook. calculate_moves() is overwritten according to how a rook moves.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="models.rook.Rook.calculate_moves">
+<span class="sig-name descname"><span class="pre">calculate_moves</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/rook.html#Rook.calculate_moves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.rook.Rook.calculate_moves" title="Link to this definition"></a></dt>
+<dd><p>Calculates all possible moves of the figure, ignoring its legality and other figures. Only considers the
+edges of the board or specific rules on how the figure can move (e.g. King, Pawn, knight).
+This method should be overwritten for each subclass of Figure, since all figures move differently.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>possible moves</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple(int, int)]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.rook.Rook.picture_black">
+<span class="sig-name descname"><span class="pre">picture_black</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Surface(60x60x32</span> <span class="pre">SW)&gt;</span></em><a class="headerlink" href="#models.rook.Rook.picture_black" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="models.rook.Rook.picture_white">
+<span class="sig-name descname"><span class="pre">picture_white</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Surface(60x60x32</span> <span class="pre">SW)&gt;</span></em><a class="headerlink" href="#models.rook.Rook.picture_white" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-models" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="main.html" class="btn btn-neutral float-left" title="main module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tests.html" class="btn btn-neutral float-right" title="tests package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Tim Seleznev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
