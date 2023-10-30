@@ -186,3 +186,105 @@ class GameStatusHandler:
         if not arrangement_after_move.is_check(figure.color):
             return True
         return False
+
+    def is_long_castle_possible(self, given_side):
+        if given_side == 1:
+            rook = None
+            for figure in self.figures:
+                if figure.color == given_side and (figure.x, figure.y) == (0, 7) and not figure.been_moved:
+                    rook = figure
+
+            if not self.find_king(given_side).been_moved and rook is not None:
+                coordinates_between = [(1, 7), (2, 7), (3, 7)]
+                no_pieces_between = True
+                for coordinates in coordinates_between:
+                    if self.is_any_figure_in_coords(coordinates) is not None:
+                        no_pieces_between = False
+
+                coordinates_king_passes = [(2, 7), (3, 7), (4, 7)]
+                no_checks_between = True
+                for coordinates in coordinates_king_passes:
+                    temp_figures = create_new_arrangement(self.figures, self.find_king(given_side), coordinates)
+                    temp_arrangement = GameStatusHandler(temp_figures)
+                    if temp_arrangement.is_check(given_side):
+                        no_checks_between = False
+
+                if no_pieces_between and no_checks_between:
+                    return True
+            return False
+
+        else:
+            rook = None
+            for figure in self.figures:
+                if figure.color == given_side and (figure.x, figure.y) == (0, 0) and not figure.been_moved:
+                    rook = figure
+
+            if not self.find_king(given_side).been_moved and rook is not None:
+                coordinates_between = [(1, 0), (2, 0), (3, 0)]
+                no_pieces_between = True
+                for coordinates in coordinates_between:
+                    if self.is_any_figure_in_coords(coordinates) is not None:
+                        no_pieces_between = False
+
+                coordinates_king_passes = [(2, 0), (3, 0), (4, 0)]
+                no_checks_between = True
+                for coordinates in coordinates_king_passes:
+                    temp_figures = create_new_arrangement(self.figures, self.find_king(given_side), coordinates)
+                    temp_arrangement = GameStatusHandler(temp_figures)
+                    if temp_arrangement.is_check(given_side):
+                        no_checks_between = False
+
+                if no_pieces_between and no_checks_between:
+                    return True
+            return False
+
+    def is_short_castle_possible(self, given_side):
+        if given_side == 1:
+            rook = None
+            for figure in self.figures:
+                if figure.color == given_side and (figure.x, figure.y) == (7, 7) and not figure.been_moved:
+                    rook = figure
+
+            if not self.find_king(given_side).been_moved and rook is not None:
+                coordinates_between = [(5, 7), (6, 7)]
+                no_pieces_between = True
+                for coordinates in coordinates_between:
+                    if self.is_any_figure_in_coords(coordinates) is not None:
+                        no_pieces_between = False
+
+                coordinates_king_passes = [(4, 7), (5, 7), (6, 7)]
+                no_checks_between = True
+                for coordinates in coordinates_king_passes:
+                    temp_figures = create_new_arrangement(self.figures, self.find_king(given_side), coordinates)
+                    temp_arrangement = GameStatusHandler(temp_figures)
+                    if temp_arrangement.is_check(given_side):
+                        no_checks_between = False
+
+                if no_pieces_between and no_checks_between:
+                    return True
+            return False
+
+        else:
+            rook = None
+            for figure in self.figures:
+                if figure.color == given_side and (figure.x, figure.y) == (7, 0) and not figure.been_moved:
+                    rook = figure
+
+            if not self.find_king(given_side).been_moved and rook is not None:
+                coordinates_between = [(5, 0), (6, 0)]
+                no_pieces_between = True
+                for coordinates in coordinates_between:
+                    if self.is_any_figure_in_coords(coordinates) is not None:
+                        no_pieces_between = False
+
+                coordinates_king_passes = [(4, 0), (5, 0), (6, 0)]
+                no_checks_between = True
+                for coordinates in coordinates_king_passes:
+                    temp_figures = create_new_arrangement(self.figures, self.find_king(given_side), coordinates)
+                    temp_arrangement = GameStatusHandler(temp_figures)
+                    if temp_arrangement.is_check(given_side):
+                        no_checks_between = False
+
+                if no_pieces_between and no_checks_between:
+                    return True
+            return False

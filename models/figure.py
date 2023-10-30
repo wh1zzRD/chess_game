@@ -62,6 +62,7 @@ class Figure:
         self.y = y
         self.color = color  # 1 white  0 black
         self.is_selected = False
+        self.been_moved = False
         if color:
             self.image = pygame.transform.rotozoom(self.picture_white, 0, 1.6)
             self.factor = 1
@@ -111,6 +112,8 @@ class Figure:
                         self.game.figures.remove(figure_in_coords)
                         break
             self.x, self.y = mouse_coordinates
+            if not self.been_moved:
+                self.been_moved = True
 
             self.game.turn = not self.color
             self.deselect()
@@ -160,6 +163,7 @@ class Figure:
     def get_legal_moves(self):
         """
         If the move is not legal, or rather will put you in check, such move is not added to legal moves.
+        Also add castling moves to the possible moves if self is the king and castling is possible.
 
         Returns:
             list[tuple(int, int)]: list with legal moves
@@ -170,6 +174,20 @@ class Figure:
             current_arrangement = GameStatusHandler(self.game.figures)
             if current_arrangement.is_move_legal(self, move):
                 legal_moves.append(move)
+
+        if self.is_king:
+            arrangement = GameStatusHandler(self.game.figures)
+
+            if arrangement.is_short_castle_possible(self.color):
+                if self.color == 1:
+                    legal_moves.append((6, 7))
+                else:
+                    legal_moves.append((6, 0))
+            if arrangement.is_long_castle_possible(self.color):
+                if self.color == 1:
+                    legal_moves.append((2, 7))
+                else:
+                    legal_moves.append((2, 0))
 
         return legal_moves
 
